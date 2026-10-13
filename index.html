@@ -1,1 +1,2084 @@
 
+<!DOCTYPE html>
+<html lang="vi" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Trần Mẫn Nhi - HSK 1 - Giáo Trình Toàn Diện</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts: Inter & Noto Sans SC -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@400;500;700;900&family=ZCOOL+KuaiLe&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            hanzi: ['"Noto Sans SC"', '"PingFang SC"', '"Microsoft YaHei"', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#f0fdf4',
+              100: '#dcfce7',
+              500: '#22c55e',
+              600: '#16a34a',
+              700: '#15803d',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    .font-hanzi {
+      font-family: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    }
+    .perspective-1000 {
+      perspective: 1000px;
+    }
+    .transform-style-preserve-3d {
+      transform-style: preserve-3d;
+    }
+    .backface-hidden {
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+    }
+    .rotate-y-180 {
+      transform: rotateY(180deg);
+    }
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 min-h-full flex flex-col font-sans transition-colors duration-200 select-none sm:select-auto">
+
+  <header class="sticky top-0 z-40 bg-white/95 dark:bg-slate-800/95 backdrop-blur border-b border-slate-200 dark:border-slate-700 shadow-sm">
+    <div class="max-w-7xl mx-auto px-3 sm:px-6 flex items-center justify-between h-16">
+      <div class="flex items-center space-x-3 cursor-pointer" onclick="switchTab('tu-vung')">
+        <span class="w-10 h-10 rounded-xl bg-gradient-to-tr from-rose-500 to-amber-500 flex items-center justify-center text-white font-bold text-xl shadow-md font-hanzi">
+          汉
+        </span>
+        <div>
+          <h1 class="text-lg sm:text-xl font-bold leading-tight flex items-center gap-2">
+            Trần Mẫn Nhi - HSK 1
+            <span class="text-xs px-2 py-0.5 rounded-full bg-rose-100 dark:bg-rose-950/80 text-rose-700 dark:text-rose-300 font-semibold">15 Bài Học</span>
+          </h1>
+          <p class="text-xs text-slate-500 dark:text-slate-400 hidden sm:block">Giáo trình Hán ngữ Tập 1 Quyển 1 - Từ vựng & Luyện viết chữ Hán</p>
+        </div>
+      </div>
+
+      <div class="flex items-center space-x-2">
+        <button id="themeToggleBtn" class="p-2.5 rounded-xl text-slate-500 hover:text-slate-700 dark:text-slate-300 dark:hover:white bg-slate-100 dark:bg-slate-700 transition" aria-label="Đổi giao diện Sáng/Tối">
+          <i id="themeIcon" class="fa-solid fa-moon text-lg"></i>
+        </button>
+        <button onclick="speakChinese('你好，欢迎学习汉语！')" title="Kiểm tra phát âm" class="p-2.5 rounded-xl text-rose-600 dark:text-rose-400 bg-rose-50 dark:bg-slate-700/80 hover:bg-rose-100 transition">
+          <i class="fa-solid fa-volume-high text-lg"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Navigation Tabs Responsive -->
+    <div class="max-w-7xl mx-auto px-2 sm:px-6 overflow-x-auto no-scrollbar">
+      <nav class="flex space-x-1 sm:space-x-2 py-2" id="navTabs">
+        <button onclick="switchTab('tu-vung')" id="tabBtn-tu-vung" class="tab-button px-3.5 py-2 rounded-xl text-sm font-semibold flex items-center gap-2 whitespace-nowrap bg-rose-600 text-white shadow-sm transition">
+          <i class="fa-solid fa-book-open"></i> <span>Từ Vựng</span>
+        </button>
+        <button onclick="switchTab('tra-tu')" id="tabBtn-tra-tu" class="tab-button px-3.5 py-2 rounded-xl text-sm font-semibold flex items-center gap-2 whitespace-nowrap text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700/60 transition">
+          <i class="fa-solid fa-magnifying-glass"></i> <span>Từ Điển</span>
+        </button>
+        <button onclick="switchTab('on-tap')" id="tabBtn-on-tap" class="tab-button px-3.5 py-2 rounded-xl text-sm font-semibold flex items-center gap-2 whitespace-nowrap text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700/60 transition">
+          <i class="fa-solid fa-layer-group"></i> <span>Flashcard</span>
+        </button>
+        <button onclick="switchTab('trac-nghiem')" id="tabBtn-trac-nghiem" class="tab-button px-3.5 py-2 rounded-xl text-sm font-semibold flex items-center gap-2 whitespace-nowrap text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700/60 transition">
+          <i class="fa-solid fa-circle-question"></i> <span>Trắc Nghiệm</span>
+        </button>
+        <button onclick="switchTab('bo-thu')" id="tabBtn-bo-thu" class="tab-button px-3.5 py-2 rounded-xl text-sm font-semibold flex items-center gap-2 whitespace-nowrap text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700/60 transition">
+          <i class="fa-solid fa-shapes"></i> <span>Bộ Thủ</span>
+        </button>
+        <button onclick="switchTab('luyen-viet')" id="tabBtn-luyen-viet" class="tab-button px-3.5 py-2 rounded-xl text-sm font-semibold flex items-center gap-2 whitespace-nowrap text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700/60 transition">
+          <i class="fa-solid fa-pen-nib"></i> <span>Luyện Viết Chữ Hán</span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="flex-grow max-w-7xl w-full mx-auto p-3 sm:p-6">
+
+    <!-- ============================================== -->
+    <!-- TAB 1: DANH SÁCH TỪ VỰNG CHI TIẾT TỪ 15 BÀI -->
+    <!-- ============================================== -->
+    <section id="tab-tu-vung" class="tab-pane block space-y-4">
+      <div class="bg-white dark:bg-slate-800 p-4 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 flex flex-col md:flex-row md:items-center justify-between gap-3">
+        <!-- Input tìm kiếm từ vựng -->
+        <div class="relative flex-grow">
+          <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400"></i>
+          <input type="text" id="vocabSearchInput" placeholder="Tìm theo chữ Hán, Pinyin hoặc nghĩa tiếng Việt..." 
+                 class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-rose-500 text-sm">
+        </div>
+
+        <!-- Bộ lọc theo bài học (Bài 1 -> 15) -->
+        <div class="flex items-center gap-2">
+          <span class="text-xs text-slate-400 whitespace-nowrap"><i class="fa-solid fa-book mr-1"></i>Chọn bài:</span>
+          <select id="lessonFilterSelect" onchange="filterByLesson(this.value)" class="text-xs sm:text-sm px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-rose-500 font-medium">
+            <option value="ALL">Tất cả bài học (15 Bài Hán 1)</option>
+            <option value="1">Bài 1: 你好 (Xin chào)</option>
+            <option value="2">Bài 2: 汉语不太难 (Tiếng Hán không khó lắm)</option>
+            <option value="3">Bài 3: 明天见 (Ngày mai gặp)</option>
+            <option value="4">Bài 4: 你去哪儿 (Bạn đi đâu đấy)</option>
+            <option value="5">Bài 5: 这是王老师 (Đây là thầy giáo Vương)</option>
+            <option value="6">Bài 6: 我学习汉语 (Tôi học tiếng Hán)</option>
+            <option value="7">Bài 7: 你吃什么 (Bạn ăn cái gì)</option>
+            <option value="8">Bài 8: 苹果一斤多少钱 (Táo một cân bao nhiêu tiền)</option>
+            <option value="9">Bài 9: 我换人民币 (Tôi đổi Nhân dân tệ)</option>
+            <option value="10">Bài 10: 他住哪儿 (Ông ấy ở đâu)</option>
+            <option value="11">Bài 11: 我们都是留学生 (Chúng tôi đều là lưu học sinh)</option>
+            <option value="12">Bài 12: 你在哪儿学习 (Bạn học ở đâu)</option>
+            <option value="13">Bài 13: 这是不是中药 (Cái này có phải thuốc đông y không)</option>
+            <option value="14">Bài 14: 你的车是新的还是旧的 (Xe bạn là mới hay cũ)</option>
+            <option value="15">Bài 15: 你们公司有多少职员 (Công ty bạn có bao nhiêu nhân viên)</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between text-xs text-slate-500 px-1">
+        <span id="vocabCountBadge">Đang tải dữ liệu từ vựng Hán 1...</span>
+        <span>Nhấn <i class="fa-solid fa-volume-high text-rose-500"></i> để nghe phát âm, bấm <i class="fa-solid fa-pen-nib text-indigo-500"></i> để vào tập viết chữ.</span>
+      </div>
+
+      <!-- Danh sách từ vựng dạng thẻ lưới -->
+      <div id="vocabListContainer" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <!-- Được hiển thị động qua JS -->
+      </div>
+    </section>
+
+    <!-- ============================================== -->
+    <!-- TAB 2: TỪ ĐIỂN TRA TỪ HÁN NGỮ 1 -->
+    <!-- ============================================== -->
+    <section id="tab-tra-tu" class="tab-pane hidden space-y-4">
+      <div class="max-w-2xl mx-auto bg-white dark:bg-slate-800 p-6 rounded-3xl shadow-sm border border-slate-200 dark:border-slate-700 text-center">
+        <div class="w-14 h-14 bg-rose-100 dark:bg-rose-950/50 rounded-2xl flex items-center justify-center mx-auto mb-3 text-rose-600 dark:text-rose-400 text-2xl shadow-inner">
+          <i class="fa-solid fa-book-bookmark"></i>
+        </div>
+        <h2 class="text-xl font-bold mb-1">Từ Điển Tra Từ Hán Ngữ 1</h2>
+        <p class="text-sm text-slate-500 dark:text-slate-400 mb-6">Tra nhanh chữ Hán, Pinyin hoặc nghĩa tiếng Việt từ 15 bài học</p>
+
+        <div class="relative mb-6">
+          <input type="text" id="dictInput" oninput="handleDictionarySearch()" placeholder="Nhập từ cần tra (Ví dụ: 喜欢, xǐhuan, trường học, tiền...)" 
+                 class="w-full px-4 py-3.5 pr-12 rounded-2xl border border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-rose-500 text-base shadow-inner">
+          <button onclick="handleDictionarySearch()" class="absolute right-3 top-1/2 -translate-y-1/2 text-rose-600 dark:text-rose-400 p-2">
+            <i class="fa-solid fa-magnifying-glass text-lg"></i>
+          </button>
+        </div>
+
+        <div class="flex flex-wrap justify-center gap-2 mb-2">
+          <span class="text-xs text-slate-400 self-center">Từ khóa nhanh:</span>
+          <button onclick="setDictSearch('你好')" class="px-2.5 py-1 text-xs rounded-lg bg-slate-100 dark:bg-slate-700 hover:bg-rose-100 dark:hover:bg-slate-600 font-hanzi">你好</button>
+          <button onclick="setDictSearch('银行')" class="px-2.5 py-1 text-xs rounded-lg bg-slate-100 dark:bg-slate-700 hover:bg-rose-100 dark:hover:bg-slate-600 font-hanzi">银行</button>
+          <button onclick="setDictSearch('qián')" class="px-2.5 py-1 text-xs rounded-lg bg-slate-100 dark:bg-slate-700 hover:bg-rose-100 dark:hover:bg-slate-600">qián</button>
+          <button onclick="setDictSearch('bác sĩ')" class="px-2.5 py-1 text-xs rounded-lg bg-slate-100 dark:bg-slate-700 hover:bg-rose-100 dark:hover:bg-slate-600">bác sĩ</button>
+          <button onclick="setDictSearch('自行车')" class="px-2.5 py-1 text-xs rounded-lg bg-slate-100 dark:bg-slate-700 hover:bg-rose-100 dark:hover:bg-slate-600 font-hanzi">自行车</button>
+        </div>
+      </div>
+
+      <div id="dictResultCard" class="max-w-2xl mx-auto"></div>
+    </section>
+
+    <!-- ============================================== -->
+    <!-- TAB 3: ÔN TẬP FLASHCARD TƯƠNG TÁC -->
+    <!-- ============================================== -->
+    <section id="tab-on-tap" class="tab-pane hidden space-y-4">
+      <div class="max-w-xl mx-auto">
+        <div class="flex items-center justify-between text-xs text-slate-500 mb-2 px-1">
+          <span id="flashcardProgressText">Thẻ: 1 / 100</span>
+          <span id="masteredCountText" class="text-emerald-600 dark:text-emerald-400 font-semibold"><i class="fa-solid fa-circle-check mr-1"></i>Đã thuộc: 0</span>
+        </div>
+        <div class="w-full bg-slate-200 dark:bg-slate-700 h-2.5 rounded-full overflow-hidden mb-6">
+          <div id="flashcardProgressBar" class="bg-rose-600 h-full w-0 transition-all duration-300"></div>
+        </div>
+
+        <!-- Thẻ lật 3D -->
+        <div class="perspective-1000 mb-6 cursor-pointer" onclick="flipFlashcard()">
+          <div id="flashcardInner" class="relative w-full min-h-[400px] sm:min-h-[440px] rounded-3xl p-6 transition-transform duration-500 transform-style-preserve-3d shadow-xl bg-white dark:bg-slate-800 border-2 border-slate-200 dark:border-slate-700 flex flex-col justify-between">
+            
+            <!-- Mặt trước -->
+            <div id="fcFront" class="absolute inset-0 p-6 flex flex-col items-center justify-center backface-hidden">
+              <span class="text-xs uppercase tracking-widest text-slate-400 mb-4 bg-slate-100 dark:bg-slate-700 px-3.5 py-1 rounded-full font-medium">Chạm để lật đáp án</span>
+              <div id="fcWord" class="font-hanzi text-7xl sm:text-8xl font-black text-slate-800 dark:text-white my-6 select-none transition-transform hover:scale-105">
+                我
+              </div>
+              <div class="flex items-center gap-2">
+                <button onclick="event.stopPropagation(); speakChinese(currentFcWord.hanzi)" class="px-4 py-2.5 rounded-xl bg-rose-50 dark:bg-slate-700 text-rose-600 dark:text-rose-300 text-sm font-semibold flex items-center gap-2 hover:bg-rose-100 transition shadow-sm">
+                  <i class="fa-solid fa-volume-high"></i> Nghe phát âm
+                </button>
+                <button onclick="event.stopPropagation(); jumpToPracticeWriting(currentFcWord.hanzi)" class="px-4 py-2.5 rounded-xl bg-indigo-50 dark:bg-slate-700 text-indigo-600 dark:text-indigo-300 text-sm font-semibold flex items-center gap-2 hover:bg-indigo-100 transition shadow-sm">
+                  <i class="fa-solid fa-pen-nib"></i> Tập viết
+                </button>
+              </div>
+            </div>
+
+            <!-- Mặt sau -->
+            <div id="fcBack" class="absolute inset-0 p-6 flex flex-col justify-between backface-hidden rotate-y-180 overflow-y-auto">
+              <div>
+                <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-700 pb-3 mb-3">
+                  <div class="flex items-baseline gap-2">
+                    <span id="fcBackWord" class="font-hanzi text-3xl font-bold text-rose-600 dark:text-rose-400">我</span>
+                    <span id="fcBackPinyin" class="text-xl font-bold text-amber-500">wǒ</span>
+                    <span id="fcBackType" class="text-xs px-2.5 py-0.5 rounded-full bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300">Đại từ</span>
+                  </div>
+                  <button onclick="event.stopPropagation(); speakChinese(currentFcWord.hanzi)" class="p-2.5 rounded-xl bg-rose-50 dark:bg-slate-700 text-rose-600 hover:bg-rose-100 transition">
+                    <i class="fa-solid fa-volume-high"></i>
+                  </button>
+                </div>
+                <div class="text-base sm:text-lg font-bold text-slate-800 dark:text-white mb-4">
+                  Nghĩa: <span id="fcBackMeaning" class="text-emerald-600 dark:text-emerald-400 font-semibold">Tôi, tao, tớ</span>
+                </div>
+                <div class="space-y-2 text-left">
+                  <div class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">3 Câu ví dụ:</div>
+                  <div id="fcBackExamples" class="space-y-2 text-xs sm:text-sm"></div>
+                </div>
+              </div>
+              <div class="text-center pt-2 text-xs text-slate-400">
+                Chạm vào thẻ để lật lại mặt trước
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Điều hướng Flashcard -->
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-3">
+          <div class="flex items-center gap-2 w-full sm:w-auto">
+            <button onclick="prevFlashcard()" class="flex-1 sm:flex-initial px-4 py-3 rounded-xl bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200 font-semibold hover:bg-slate-300 transition">
+              <i class="fa-solid fa-arrow-left mr-1"></i> Trước
+            </button>
+            <button onclick="nextFlashcard()" class="flex-1 sm:flex-initial px-4 py-3 rounded-xl bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200 font-semibold hover:bg-slate-300 transition">
+              Tiếp <i class="fa-solid fa-arrow-right ml-1"></i>
+            </button>
+          </div>
+
+          <div class="flex items-center gap-2 w-full sm:w-auto">
+            <button onclick="markNeedReview()" class="flex-1 sm:flex-initial px-4 py-3 rounded-xl bg-amber-100 dark:bg-amber-950/50 text-amber-800 dark:text-amber-300 font-semibold hover:bg-amber-200 transition text-sm">
+              <i class="fa-solid fa-rotate-left mr-1"></i> Cần ôn lại
+            </button>
+            <button onclick="markMastered()" class="flex-1 sm:flex-initial px-4 py-3 rounded-xl bg-emerald-600 text-white font-semibold hover:bg-emerald-700 shadow-md transition text-sm">
+              <i class="fa-solid fa-check mr-1"></i> Đã nhớ từ
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================== -->
+    <!-- TAB 4: TRẮC NGHIỆM PHẢN XẠ HÁN NGỮ 1 -->
+    <!-- ============================================== -->
+    <section id="tab-trac-nghiem" class="tab-pane hidden space-y-4">
+      <div class="max-w-2xl mx-auto bg-white dark:bg-slate-800 p-5 sm:p-8 rounded-3xl shadow-sm border border-slate-200 dark:border-slate-700">
+        <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-700 pb-4 mb-6">
+          <div>
+            <h2 class="text-lg sm:text-xl font-bold flex items-center gap-2">
+              <i class="fa-solid fa-trophy text-amber-500"></i> Trắc Nghiệm Phản Xạ Hán Ngữ 1
+            </h2>
+            <p class="text-xs text-slate-500 dark:text-slate-400">Chọn câu trả lời chính xác nhất theo kiến thức bài học</p>
+          </div>
+          <div class="text-right">
+            <span class="text-xs text-slate-400 font-medium">Điểm số</span>
+            <div class="text-xl font-black text-rose-600 dark:text-rose-400"><span id="quizScore">0</span> / <span id="quizTotalDone">0</span></div>
+          </div>
+        </div>
+
+        <div id="quizQuestionBox" class="text-center py-6 px-4 bg-slate-50 dark:bg-slate-900/60 rounded-2xl border border-slate-100 dark:border-slate-700/60 mb-6 relative">
+          <button onclick="speakCurrentQuizWord()" class="absolute right-3 top-3 p-2.5 rounded-full bg-white dark:bg-slate-800 text-rose-600 dark:text-rose-400 shadow-sm hover:scale-110 transition" title="Nghe phát âm">
+            <i class="fa-solid fa-volume-high"></i>
+          </button>
+          <span class="text-xs text-slate-400 uppercase tracking-widest block mb-2">Câu hỏi</span>
+          <div id="quizHanzi" class="font-hanzi text-5xl sm:text-6xl font-black text-slate-800 dark:text-white mb-2">
+            谢谢
+          </div>
+          <div id="quizPinyin" class="text-xl font-bold text-amber-500">
+            xièxie
+          </div>
+        </div>
+
+        <div id="quizOptionsContainer" class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6"></div>
+
+        <div id="quizFeedback" class="hidden p-4 rounded-2xl mb-4 text-sm font-medium transition-all"></div>
+
+        <button id="quizNextBtn" onclick="nextQuizQuestion()" class="w-full py-3.5 rounded-xl bg-rose-600 hover:bg-rose-700 text-white font-semibold flex items-center justify-center gap-2 shadow-lg transition">
+          <span>Câu hỏi tiếp theo</span> <i class="fa-solid fa-arrow-right"></i>
+        </button>
+      </div>
+    </section>
+
+    <!-- ============================================== -->
+    <!-- TAB 5: BỘ THỦ CHỮ HÁN CỐT LÕI (GIÁO TRÌNH HÁN 1) -->
+    <!-- ============================================== -->
+    <section id="tab-bo-thu" class="tab-pane hidden space-y-4">
+      <div class="bg-white dark:bg-slate-800 p-5 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm">
+        <h2 class="text-xl font-bold mb-1 flex items-center gap-2">
+          <i class="fa-solid fa-shapes text-indigo-500"></i> Các Bộ Thủ Thường Gặp Trong Hán Ngữ 1
+        </h2>
+        <p class="text-sm text-slate-500 dark:text-slate-400">
+          Chữ Hán hiện đại hơn 90% là chữ hình thanh. Nắm vững bộ thủ giúp bạn nhận biết kết cấu mặt chữ, nhớ chữ lâu và tra từ điển dễ dàng.
+        </p>
+      </div>
+
+      <div id="radicalsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+    </section>
+
+    <!-- ============================================== -->
+    <!-- TAB 6: BẢNG LUYỆN VIẾT CHỮ HÁN & LƯỚI CHỮ MỄ -->
+    <!-- ============================================== -->
+    <section id="tab-luyen-viet" class="tab-pane hidden space-y-6">
+      
+      <!-- Quy tắc bút thuận theo giáo trình -->
+      <div class="bg-white dark:bg-slate-800 p-5 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm">
+        <h3 class="text-base sm:text-lg font-bold mb-3 flex items-center gap-2">
+          <i class="fa-solid fa-pen-fancy text-amber-500"></i> 7 Quy Tắc Bút Thuận Căn Bản (Giáo Trình Hán Ngữ)
+        </h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-xs sm:text-sm">
+          <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-100 dark:border-slate-700">
+            <span class="font-bold text-rose-600 block mb-1">1. Ngang trước, sổ sau</span>
+            <span>Ví dụ chữ: <strong>十, 丰, 木</strong></span>
+          </div>
+          <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-100 dark:border-slate-700">
+            <span class="font-bold text-rose-600 block mb-1">2. Phẩy trước, mác sau</span>
+            <span>Ví dụ chữ: <strong>八, 人, 大</strong></span>
+          </div>
+          <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-100 dark:border-slate-700">
+            <span class="font-bold text-rose-600 block mb-1">3. Trên trước, dưới sau</span>
+            <span>Ví dụ chữ: <strong>三, 二, 旦, 忘</strong></span>
+          </div>
+          <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-100 dark:border-slate-700">
+            <span class="font-bold text-rose-600 block mb-1">4. Trái trước, phải sau</span>
+            <span>Ví dụ chữ: <strong>你, 好, 他, 忙</strong></span>
+          </div>
+          <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-100 dark:border-slate-700">
+            <span class="font-bold text-rose-600 block mb-1">5. Ngoài trước, trong sau</span>
+            <span>Ví dụ chữ: <strong>月, 同, 风</strong></span>
+          </div>
+          <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-100 dark:border-slate-700">
+            <span class="font-bold text-rose-600 block mb-1">6. Vào trước, đóng sau</span>
+            <span>Ví dụ chữ: <strong>回, 国, 日, 四</strong></span>
+          </div>
+          <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-100 dark:border-slate-700 sm:col-span-2">
+            <span class="font-bold text-rose-600 block mb-1">7. Giữa trước, hai bên sau</span>
+            <span>Ví dụ chữ: <strong>小, 水, 办</strong></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Khu vực thực hành Canvas -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        
+        <!-- Bảng điều khiển & chọn chữ luyện tập -->
+        <div class="lg:col-span-4 bg-white dark:bg-slate-800 p-5 rounded-3xl border border-slate-200 dark:border-slate-700 shadow-sm flex flex-col justify-between">
+          <div>
+            <h4 class="font-bold text-base mb-2">Chọn Chữ Tập Viết</h4>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mb-3">Nhấp vào danh sách nhanh hoặc gõ bất kỳ chữ Hán nào vào ô bên dưới:</p>
+            
+            <!-- Ô nhập chữ Hán tùy ý -->
+            <div class="flex gap-2 mb-4">
+              <input type="text" id="customCharInput" maxlength="4" placeholder="Nhập chữ Hán cần viết..." 
+                     class="flex-1 px-3 py-2 text-sm rounded-xl border border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-rose-500 font-hanzi">
+              <button onclick="applyCustomPracticeChar()" class="px-3 py-2 rounded-xl bg-rose-600 text-white text-xs font-semibold hover:bg-rose-700 transition">
+                Tập viết
+              </button>
+            </div>
+
+            <!-- Các nút chữ mẫu nhanh -->
+            <div class="grid grid-cols-4 gap-2 mb-4 max-h-56 overflow-y-auto no-scrollbar" id="practiceCharSelector"></div>
+
+            <div class="p-4 rounded-2xl bg-rose-50/70 dark:bg-slate-900 border border-rose-100 dark:border-slate-700 space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="text-xs text-slate-500 font-medium">Chữ đang luyện:</span>
+                <button onclick="speakChinese(selectedCharToPractice.char)" class="text-rose-600 dark:text-rose-400 text-xs flex items-center gap-1 font-semibold hover:underline">
+                  <i class="fa-solid fa-volume-high"></i> Nghe đọc
+                </button>
+              </div>
+              <div class="flex items-center gap-3">
+                <span id="charPracticeBig" class="font-hanzi text-5xl font-black text-slate-800 dark:text-white">你</span>
+                <div>
+                  <div id="charPracticePinyin" class="text-lg font-bold text-amber-500">nǐ</div>
+                  <div id="charPracticeMeaning" class="text-xs text-slate-600 dark:text-slate-300">Bạn, anh, chị (ngôi thứ 2)</div>
+                </div>
+              </div>
+              <div id="charPracticeSteps" class="text-xs text-slate-500 dark:text-slate-400 pt-2 border-t border-rose-100 dark:border-slate-800">
+                Thứ tự: Trái trước phải sau (Bộ Nhân đứng 亻 trước, chữ Nhĩ 尔 sau).
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-4 pt-4 border-t border-slate-100 dark:border-slate-700 text-xs text-slate-400">
+            <i class="fa-solid fa-lightbulb text-amber-400 mr-1"></i> Tối ưu cho bút cảm ứng & vuốt ngón tay trên điện thoại / máy tính bảng.
+          </div>
+        </div>
+
+        <!-- Khung Canvas Lưới Chữ Mễ (米字格) -->
+        <div class="lg:col-span-8 bg-white dark:bg-slate-800 p-5 rounded-3xl border border-slate-200 dark:border-slate-700 shadow-sm flex flex-col items-center">
+          <div class="flex items-center justify-between w-full max-w-[360px] sm:max-w-[420px] mb-3">
+            <span class="text-xs font-semibold text-slate-500">Khung Chữ Mễ (米字格)</span>
+            <div class="flex items-center gap-2">
+              <!-- Màu mực viết -->
+              <input type="color" id="brushColor" value="#e11d48" class="w-8 h-8 rounded-xl border-0 cursor-pointer p-0 bg-transparent" title="Chọn màu mực viết">
+              
+              <!-- Nút xóa bảng vẽ -->
+              <button onclick="clearCanvas()" class="px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 text-slate-700 dark:text-slate-200 text-xs font-semibold transition flex items-center gap-1">
+                <i class="fa-solid fa-trash-can text-rose-500"></i> Xóa nét
+              </button>
+              
+              <!-- Nút ẩn/hiện chữ mẫu mờ -->
+              <button onclick="toggleCanvasGuide()" id="toggleGuideBtn" class="px-3 py-1.5 rounded-xl bg-rose-50 dark:bg-slate-700 text-rose-600 dark:text-rose-300 text-xs font-semibold hover:bg-rose-100 transition">
+                Ẩn chữ mẫu
+              </button>
+            </div>
+          </div>
+
+          <!-- Khung ô Mễ Canvas -->
+          <div class="relative w-[320px] h-[320px] sm:w-[390px] sm:h-[390px] rounded-3xl border-4 border-red-200 dark:border-red-950/80 bg-[#fffdfa] dark:bg-slate-900 shadow-inner overflow-hidden touch-none select-none">
+            <!-- Lưới chữ Mễ màu đỏ truyền thống (米字格) -->
+            <svg class="absolute inset-0 w-full h-full pointer-events-none stroke-red-200 dark:stroke-red-950/60" stroke-width="1.5" stroke-dasharray="5,5">
+              <line x1="0" y1="50%" x2="100%" y2="50%" />
+              <line x1="50%" y1="0" x2="50%" y2="100%" />
+              <line x1="0" y1="0" x2="100%" y2="100%" />
+              <line x1="100%" y1="0" x2="0" y2="100%" />
+            </svg>
+            
+            <!-- Chữ mẫu mờ làm cốt vẽ theo nét -->
+            <div id="canvasGuideChar" class="absolute inset-0 flex items-center justify-center font-hanzi text-[220px] sm:text-[270px] font-bold text-slate-200/80 dark:text-slate-700/50 pointer-events-none select-none">
+              你
+            </div>
+
+            <!-- Canvas HTML5 bắt nét ngón tay hoặc chuột -->
+            <canvas id="writingCanvas" width="390" height="390" class="absolute inset-0 w-full h-full cursor-crosshair"></canvas>
+          </div>
+
+          <div class="w-full max-w-[360px] sm:max-w-[420px] mt-4 flex items-center justify-between text-xs text-slate-500">
+            <span>Độ dày nét bút:</span>
+            <input type="range" id="brushSize" min="6" max="28" value="14" class="w-48 accent-rose-600">
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="mt-auto border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 py-4 text-center text-xs text-slate-500">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-2">
+      <p>© 2026 Trần Mẫn Nhi - HSK 1 (Giáo Trình Hán Ngữ 1) - Kho từ vựng & bài tập tương tác chuẩn HSK 1.</p>
+      <div class="flex items-center gap-3 text-slate-400">
+        <span>Tương thích Web / iOS / Android / Windows / Mac</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Dữ liệu từ vựng lọc đầy đủ từ 15 bài học trong file PDF Giáo trình Hán ngữ Tập 1 Quyển 1
+    const HAN1_DATA = [
+      // BÀI 1: 你好
+      {
+        id: 1, lesson: 1, hanzi: "你", pinyin: "nǐ", type: "Đại từ", meaning: "Anh, chị, bạn (ngôi 2 số ít)",
+        examples: [
+          { zh: "你好！", py: "Nǐ hǎo!", vi: "Chào bạn!" },
+          { zh: "你去哪儿？", py: "Nǐ qù nǎr?", vi: "Bạn đi đâu đấy?" },
+          { zh: "你是老师吗？", py: "Nǐ shì lǎoshī ma?", vi: "Bạn là giáo viên phải không?" }
+        ]
+      },
+      {
+        id: 2, lesson: 1, hanzi: "好", pinyin: "hǎo", type: "Tính từ", meaning: "Tốt, đẹp, hay, khỏe",
+        examples: [
+          { zh: "你好！", py: "Nǐ hǎo!", vi: "Chào bạn!" },
+          { zh: "很好。", py: "Hěn hǎo.", vi: "Rất tốt (rất khỏe)." },
+          { zh: "这本书很好。", py: "Zhè běn shū hěn hǎo.", vi: "Quyển sách này rất hay." }
+        ]
+      },
+      {
+        id: 3, lesson: 1, hanzi: "一", pinyin: "yī", type: "Số từ", meaning: "Một (1)",
+        examples: [
+          { zh: "一个人。", py: "Yí gè rén.", vi: "Một người." },
+          { zh: "我要一碗汤。", py: "Wǒ yào yì wǎn tāng.", vi: "Tôi muốn một bát canh." },
+          { zh: "苹果一斤三块。", py: "Píngguǒ yì jīn sān kuài.", vi: "Táo 1 cân 3 đồng." }
+        ]
+      },
+      {
+        id: 4, lesson: 1, hanzi: "五", pinyin: "wǔ", type: "Số từ", meaning: "Năm (5)",
+        examples: [
+          { zh: "我有五个朋友。", py: "Wǒ yǒu wǔ gè péngyou.", vi: "Tôi có 5 người bạn." },
+          { zh: "五百美元。", py: "Wǔ bǎi měiyuán.", vi: "500 đôla Mỹ." },
+          { zh: "星期五见。", py: "Xīngqīwǔ jiàn.", vi: "Hẹn gặp vào thứ sáu." }
+        ]
+      },
+      {
+        id: 5, lesson: 1, hanzi: "八", pinyin: "bā", type: "Số từ", meaning: "Tám (8)",
+        examples: [
+          { zh: "他住八楼。", py: "Tā zhù bā lóu.", vi: "Anh ấy sống ở tầng 8." },
+          { zh: "八斤苹果。", py: "Bā jīn píngguǒ.", vi: "8 cân táo." },
+          { zh: "八个人。", py: "Bā gè rén.", vi: "8 người." }
+        ]
+      },
+      {
+        id: 6, lesson: 1, hanzi: "大", pinyin: "dà", type: "Tính từ", meaning: "To, lớn",
+        examples: [
+          { zh: "学校很大。", py: "Xuéxiào hěn dà.", vi: "Trường học rất lớn." },
+          { zh: "这个箱子很大。", py: "Zhè ge xiāngzi hěn dà.", vi: "Cái vali này rất to." },
+          { zh: "他不吃大苹果。", py: "Tā bù chī dà píngguǒ.", vi: "Anh ấy không ăn táo to." }
+        ]
+      },
+      {
+        id: 7, lesson: 1, hanzi: "不", pinyin: "bù", type: "Phó từ", meaning: "Không, chẳng",
+        examples: [
+          { zh: "我不是老师。", py: "Wǒ bú shì lǎoshī.", vi: "Tôi không phải giáo viên." },
+          { zh: "汉语不太难。", py: "Hànyǔ bú tài nán.", vi: "Tiếng Hán không khó lắm." },
+          { zh: "我不去银行。", py: "Wǒ bú qù yínháng.", vi: "Tôi không đi ngân hàng." }
+        ]
+      },
+      {
+        id: 8, lesson: 1, hanzi: "口", pinyin: "kǒu", type: "Danh từ/Lượng từ", meaning: "Miệng, nhân khẩu trong gia đình",
+        examples: [
+          { zh: "我家有五口人。", py: "Wǒ jiā yǒu wǔ kǒu rén.", vi: "Nhà tôi có 5 người." },
+          { zh: "喝一口水。", py: "Hē yì kǒu shuǐ.", vi: "Uống một ngụm nước." },
+          { zh: "张口说汉语。", py: "Zhāng kǒu shuō Hànyǔ.", vi: "Mở miệng nói tiếng Hán." }
+        ]
+      },
+      {
+        id: 9, lesson: 1, hanzi: "白", pinyin: "bái", type: "Tính từ", meaning: "Trắng, màu trắng",
+        examples: [
+          { zh: "白色的自行车。", py: "Báisè de zìxíngchē.", vi: "Xe đạp màu trắng." },
+          { zh: "白老师在吗？", py: "Bái lǎoshī zài ma?", vi: "Thầy Bạch có ở đây không?" },
+          { zh: "我的包是白的。", py: "Wǒ de bāo shì bái de.", vi: "Túi của tôi màu trắng." }
+        ]
+      },
+      {
+        id: 10, lesson: 1, hanzi: "女", pinyin: "nǚ", type: "Tính từ", meaning: "Nữ, con gái",
+        examples: [
+          { zh: "我们班有八个女同学。", py: "Wǒmen bān yǒu bā gè nǚ tóngxué.", vi: "Lớp chúng tôi có 8 bạn học nữ." },
+          { zh: "她是女老师。", py: "Tā shì nǚ lǎoshī.", vi: "Cô ấy là giáo viên nữ." },
+          { zh: "那是女人的衣服。", py: "Nà shì nǚrén de yīfu.", vi: "Đó là quần áo phụ nữ." }
+        ]
+      },
+      {
+        id: 11, lesson: 1, hanzi: "马", pinyin: "mǎ", type: "Danh từ", meaning: "Con ngựa, họ Mã",
+        examples: [
+          { zh: "这是马校长。", py: "Zhè shì Mǎ xiàozhǎng.", vi: "Đây là hiệu trưởng Mã." },
+          { zh: "大白马。", py: "Dà bái mǎ.", vi: "Con ngựa trắng to lớn." },
+          { zh: "马马虎虎。", py: "Mǎmǎhūhū.", vi: "Bình thường, tàm tạm." }
+        ]
+      },
+
+      // BÀI 2: 汉语不太难
+      {
+        id: 12, lesson: 2, hanzi: "忙", pinyin: "máng", type: "Tính từ", meaning: "Bận, bận rộn",
+        examples: [
+          { zh: "你忙吗？", py: "Nǐ máng ma?", vi: "Bạn có bận không?" },
+          { zh: "我很忙。", py: "Wǒ hěn máng.", vi: "Tôi rất bận." },
+          { zh: "最近工作不忙。", py: "Zuìjìn gōngzuò bù máng.", vi: "Gần đây công việc không bận." }
+        ]
+      },
+      {
+        id: 13, lesson: 2, hanzi: "吗", pinyin: "ma", type: "Trợ từ", meaning: "À, ư, phải không (nghi vấn)",
+        examples: [
+          { zh: "你好吗？", py: "Nǐ hǎo ma?", vi: "Bạn khỏe không?" },
+          { zh: "你吃馒头吗？", py: "Nǐ chī mántou ma?", vi: "Bạn ăn bánh màn thầu không?" },
+          { zh: "去北京吗？", py: "Qù Běijīng ma?", vi: "Đi Bắc Kinh không?" }
+        ]
+      },
+      {
+        id: 14, lesson: 2, hanzi: "很", pinyin: "hěn", type: "Phó từ", meaning: "Rất",
+        examples: [
+          { zh: "汉字很难。", py: "Hànzì hěn nán.", vi: "Chữ Hán rất khó." },
+          { zh: "我身体很好。", py: "Wǒ shēntǐ hěn hǎo.", vi: "Sức khỏe tôi rất tốt." },
+          { zh: "他很高兴。", py: "Tā hěn gāoxìng.", vi: "Anh ấy rất vui mừng." }
+        ]
+      },
+      {
+        id: 15, lesson: 2, hanzi: "汉语", pinyin: "Hànyǔ", type: "Danh từ", meaning: "Tiếng Hán, tiếng Trung",
+        examples: [
+          { zh: "我学习汉语。", py: "Wǒ xuéxí Hànyǔ.", vi: "Tôi học tiếng Hán." },
+          { zh: "汉语难吗？", py: "Hànyǔ nán ma?", vi: "Tiếng Hán có khó không?" },
+          { zh: "汉语词典。", py: "Hànyǔ cídiǎn.", vi: "Từ điển tiếng Hán." }
+        ]
+      },
+      {
+        id: 16, lesson: 2, hanzi: "难", pinyin: "nán", type: "Tính từ", meaning: "Khó",
+        examples: [
+          { zh: "不太难。", py: "Bú tài nán.", vi: "Không khó lắm." },
+          { zh: "发音不难，汉字难。", py: "Fāyīn bù nán, Hànzì nán.", vi: "Phát âm không khó, chữ Hán khó." },
+          { zh: "这课很难。", py: "Zhè kè hěn nán.", vi: "Bài này rất khó." }
+        ]
+      },
+      {
+        id: 17, lesson: 2, hanzi: "太", pinyin: "tài", type: "Phó từ", meaning: "Quá, lắm",
+        examples: [
+          { zh: "太贵了！", py: "Tài guì le!", vi: "Đắt quá rồi!" },
+          { zh: "不太忙。", py: "Bú tài máng.", vi: "Không bận lắm." },
+          { zh: "太谢谢你了！", py: "Tài xièxie nǐ le!", vi: "Vô cùng cảm ơn bạn!" }
+        ]
+      },
+      {
+        id: 18, lesson: 2, hanzi: "爸爸", pinyin: "bàba", type: "Danh từ", meaning: "Ba, bố, cha",
+        examples: [
+          { zh: "这是我爸爸。", py: "Zhè shì wǒ bàba.", vi: "Đây là bố tôi." },
+          { zh: "爸爸身体好吗？", py: "Bàba shēntǐ hǎo ma?", vi: "Bố có khỏe không?" },
+          { zh: "爸爸是大夫。", py: "Bàba shì dàifu.", vi: "Bố là bác sĩ." }
+        ]
+      },
+      {
+        id: 19, lesson: 2, hanzi: "妈妈", pinyin: "māma", type: "Danh từ", meaning: "Mẹ, má",
+        examples: [
+          { zh: "我妈妈在银行工作。", py: "Wǒ māma zài yínháng gōngzuò.", vi: "Mẹ tôi làm việc ở ngân hàng." },
+          { zh: "妈妈身体很好。", py: "Māma shēntǐ hěn hǎo.", vi: "Mẹ sức khỏe rất tốt." },
+          { zh: "爸爸爱妈妈。", py: "Bàba ài māma.", vi: "Bố yêu mẹ." }
+        ]
+      },
+      {
+        id: 20, lesson: 2, hanzi: "他", pinyin: "tā", type: "Đại từ", meaning: "Anh ấy, ông ấy, nó (nam)",
+        examples: [
+          { zh: "他是中国人。", py: "Tā shì Zhōngguó rén.", vi: "Anh ấy là người Trung Quốc." },
+          { zh: "他在家呢。", py: "Tā zài jiā ne.", vi: "Anh ấy đang ở nhà đấy." },
+          { zh: "他学英语。", py: "Tā xué Yīngyǔ.", vi: "Anh ấy học tiếng Anh." }
+        ]
+      },
+      {
+        id: 21, lesson: 2, hanzi: "她", pinyin: "tā", type: "Đại từ", meaning: "Chị ấy, cô ấy, bà ấy (nữ)",
+        examples: [
+          { zh: "她是我们的老师。", py: "Tā shì wǒmen de lǎoshī.", vi: "Cô ấy là giáo viên của chúng tôi." },
+          { zh: "她叫田芳。", py: "Tā jiào Tián Fāng.", vi: "Cô ấy tên là Điền Phương." },
+          { zh: "她也是留学生。", py: "Tā yě shì liúxuéshēng.", vi: "Cô ấy cũng là lưu học sinh." }
+        ]
+      },
+      {
+        id: 22, lesson: 2, hanzi: "哥哥", pinyin: "gēge", type: "Danh từ", meaning: "Anh trai",
+        examples: [
+          { zh: "你有哥哥吗？", py: "Nǐ yǒu gēge ma?", vi: "Bạn có anh trai không?" },
+          { zh: "我哥哥不在家。", py: "Wǒ gēge bú zài jiā.", vi: "Anh trai tôi không có ở nhà." },
+          { zh: "哥哥在大学学习。", py: "Gēge zài dàxué xuéxí.", vi: "Anh trai học ở trường đại học." }
+        ]
+      },
+      {
+        id: 23, lesson: 2, hanzi: "弟弟", pinyin: "dìdi", type: "Danh từ", meaning: "Em trai",
+        examples: [
+          { zh: "我有两个弟弟。", py: "Wǒ yǒu liǎng gè dìdi.", vi: "Tôi có 2 đứa em trai." },
+          { zh: "弟弟很小。", py: "Dìdi hěn xiǎo.", vi: "Em trai còn rất nhỏ." },
+          { zh: "弟弟喜欢吃米饭。", py: "Dìdi xǐhuan chī mǐfàn.", vi: "Em trai thích ăn cơm." }
+        ]
+      },
+      {
+        id: 24, lesson: 2, hanzi: "妹妹", pinyin: "mèimei", type: "Danh từ", meaning: "Em gái",
+        examples: [
+          { zh: "妹妹去学校。", py: "Mèimei qù xuéxiào.", vi: "Em gái đi đến trường." },
+          { zh: "这是我妹妹。", py: "Zhè shì wǒ mèimei.", vi: "Đây là em gái tôi." },
+          { zh: "妹妹不喝茶。", py: "Mèimei bù hē chá.", vi: "Em gái không uống trà." }
+        ]
+      },
+
+      // BÀI 3: 明天见
+      {
+        id: 25, lesson: 3, hanzi: "学", pinyin: "xué", type: "Động từ", meaning: "Học, học tập",
+        examples: [
+          { zh: "你学什么？", py: "Nǐ xué shénme?", vi: "Bạn học cái gì?" },
+          { zh: "我学汉语。", py: "Wǒ xué Hànyǔ.", vi: "Tôi học tiếng Hán." },
+          { zh: "学英语不太难。", py: "Xué Yīngyǔ bú tài nán.", vi: "Học tiếng Anh không khó lắm." }
+        ]
+      },
+      {
+        id: 26, lesson: 3, hanzi: "英语", pinyin: "Yīngyǔ", type: "Danh từ", meaning: "Tiếng Anh",
+        examples: [
+          { zh: "你学英语吗？", py: "Nǐ xué Yīngyǔ ma?", vi: "Bạn học tiếng Anh không?" },
+          { zh: "英语书。", py: "Yīngyǔ shū.", vi: "Sách tiếng Anh." },
+          { zh: "他说英语。", py: "Tā shuō Yīngyǔ.", vi: "Anh ấy nói tiếng Anh." }
+        ]
+      },
+      {
+        id: 27, lesson: 3, hanzi: "对", pinyin: "duì", type: "Tính từ", meaning: "Đúng, phải",
+        examples: [
+          { zh: "对，我是学生。", py: "Duì, wǒ shì xuésheng.", vi: "Đúng vậy, tôi là học sinh." },
+          { zh: "你说得对。", py: "Nǐ shuō de duì.", vi: "Bạn nói đúng rồi." },
+          { zh: "数数，对了。", py: "Shǔshu, duì le.", vi: "Đếm tiền, đúng rồi." }
+        ]
+      },
+      {
+        id: 28, lesson: 3, hanzi: "明天", pinyin: "míngtiān", type: "Danh từ", meaning: "Ngày mai",
+        examples: [
+          { zh: "明天见！", py: "Míngtiān jiàn!", vi: "Ngày mai gặp nhé!" },
+          { zh: "明天你去哪儿？", py: "Míngtiān nǐ qù nǎr?", vi: "Ngày mai bạn đi đâu?" },
+          { zh: "明天星期天。", py: "Míngtiān xīngqītiān.", vi: "Ngày mai là chủ nhật." }
+        ]
+      },
+      {
+        id: 29, lesson: 3, hanzi: "见", pinyin: "jiàn", type: "Động từ", meaning: "Gặp, thấy",
+        examples: [
+          { zh: "明天见！", py: "Míngtiān jiàn!", vi: "Hẹn gặp ngày mai!" },
+          { zh: "再见！", py: "Zàijiàn!", vi: "Tạm biệt!" },
+          { zh: "看见朋友。", py: "Kànjiàn péngyou.", vi: "Nhìn thấy bạn bè." }
+        ]
+      },
+      {
+        id: 30, lesson: 3, hanzi: "去", pinyin: "qù", type: "Động từ", meaning: "Đi",
+        examples: [
+          { zh: "我去银行取钱。", py: "Wǒ qù yínháng qǔ qián.", vi: "Tôi đi ngân hàng rút tiền." },
+          { zh: "你去不去？", py: "Nǐ qù bu qù?", vi: "Bạn có đi không?" },
+          { zh: "我不去邮局。", py: "Wǒ bú qù yóujú.", vi: "Tôi không đi bưu điện." }
+        ]
+      },
+      {
+        id: 31, lesson: 3, hanzi: "邮局", pinyin: "yóujú", type: "Danh từ", meaning: "Bưu điện",
+        examples: [
+          { zh: "你去邮局寄信吗？", py: "Nǐ qù yóujú jì xìn ma?", vi: "Bạn đi bưu điện gửi thư à?" },
+          { zh: "邮局在哪儿？", py: "Yóujú zài nǎr?", vi: "Bưu điện ở đâu?" },
+          { zh: "我去邮局买邮票。", py: "Wǒ qù yóujú mǎi yóupiào.", vi: "Tôi đến bưu điện mua tem." }
+        ]
+      },
+      {
+        id: 32, lesson: 3, hanzi: "寄", pinyin: "jì", type: "Động từ", meaning: "Gửi (thư, bưu phẩm)",
+        examples: [
+          { zh: "寄信。", py: "Jì xìn.", vi: "Gửi thư." },
+          { zh: "我寄一个包。", py: "Wǒ jì yí gè bāo.", vi: "Tôi gửi một gói bưu kiện." },
+          { zh: "去邮局寄钱。", py: "Qù yóujú jì qián.", vi: "Đi bưu điện gửi tiền." }
+        ]
+      },
+      {
+        id: 33, lesson: 3, hanzi: "信", pinyin: "xìn", type: "Danh từ", meaning: "Thư, lá thư",
+        examples: [
+          { zh: "这是爸爸的信。", py: "Zhè shì bàba de xìn.", vi: "Đây là thư của bố." },
+          { zh: "给妈妈写信。", py: "Gěi māma xiě xìn.", vi: "Viết thư cho mẹ." },
+          { zh: "我有一封信。", py: "Wǒ yǒu yì fēng xìn.", vi: "Tôi có một lá thư." }
+        ]
+      },
+      {
+        id: 34, lesson: 3, hanzi: "银行", pinyin: "yínháng", type: "Danh từ", meaning: "Ngân hàng",
+        examples: [
+          { zh: "中国银行。", py: "Zhōngguó Yínháng.", vi: "Ngân hàng Trung Quốc." },
+          { zh: "我去银行换钱。", py: "Wǒ qù yínháng huàn qián.", vi: "Tôi đến ngân hàng đổi tiền." },
+          { zh: "银行很近。", py: "Yínháng hěn jìn.", vi: "Ngân hàng rất gần." }
+        ]
+      },
+      {
+        id: 35, lesson: 3, hanzi: "取", pinyin: "qǔ", type: "Động từ", meaning: "Lấy, rút, nhận",
+        examples: [
+          { zh: "去银行取钱。", py: "Qù yínháng qǔ qián.", vi: "Đến ngân hàng rút tiền." },
+          { zh: "取信。", py: "Qǔ xìn.", vi: "Lấy thư." },
+          { zh: "取东西。", py: "Qǔ dōngxi.", vi: "Lấy đồ đạc." }
+        ]
+      },
+      {
+        id: 36, lesson: 3, hanzi: "钱", pinyin: "qián", type: "Danh từ", meaning: "Tiền",
+        examples: [
+          { zh: "多少钱？", py: "Duōshao qián?", vi: "Bao nhiêu tiền?" },
+          { zh: "给你钱。", py: "Gěi nǐ qián.", vi: "Gửi tiền cho bạn này." },
+          { zh: "我没有钱。", py: "Wǒ méiyǒu qián.", vi: "Tôi không có tiền." }
+        ]
+      },
+      {
+        id: 37, lesson: 3, hanzi: "六", pinyin: "liù", type: "Số từ", meaning: "Sáu (6)",
+        examples: [
+          { zh: "星期六。", py: "Xīngqīliù.", vi: "Thứ bảy." },
+          { zh: "六百块。", py: "Liù bǎi kuài.", vi: "600 đồng." },
+          { zh: "房间号是601。", py: "Fángjiān hào shì liù líng yāo.", vi: "Số phòng là 601." }
+        ]
+      },
+      {
+        id: 38, lesson: 3, hanzi: "七", pinyin: "qī", type: "Số từ", meaning: "Bảy (7)",
+        examples: [
+          { zh: "七斤苹果。", py: "Qī jīn píngguǒ.", vi: "7 cân táo." },
+          { zh: "七个留学生。", py: "Qī gè liúxuéshēng.", vi: "7 lưu học sinh." },
+          { zh: "七块钱。", py: "Qī kuài qián.", vi: "7 đồng tiền." }
+        ]
+      },
+      {
+        id: 39, lesson: 3, hanzi: "九", pinyin: "jiǔ", type: "Số từ", meaning: "Chín (9)",
+        examples: [
+          { zh: "九月。", py: "Jiǔ yuè.", vi: "Tháng 9." },
+          { zh: "九本书。", py: "Jiǔ běn shū.", vi: "9 quyển sách." },
+          { zh: "九十九块。", py: "Jiǔshíjiǔ kuài.", vi: "99 đồng." }
+        ]
+      },
+      {
+        id: 40, lesson: 3, hanzi: "北京", pinyin: "Běijīng", type: "Danh từ riêng", meaning: "Bắc Kinh",
+        examples: [
+          { zh: "你去北京吗？", py: "Nǐ qù Běijīng ma?", vi: "Bạn đi Bắc Kinh không?" },
+          { zh: "北京语言大学。", py: "Běijīng Yǔyán Dàxué.", vi: "Đại học Ngôn ngữ Bắc Kinh." },
+          { zh: "我家在北京。", py: "Wǒ jiā zài Běijīng.", vi: "Nhà tôi ở Bắc Kinh." }
+        ]
+      },
+
+      // BÀI 4: 你去哪儿
+      {
+        id: 41, lesson: 4, hanzi: "今天", pinyin: "jīntiān", type: "Danh từ", meaning: "Hôm nay",
+        examples: [
+          { zh: "今天星期几？", py: "Jīntiān xīngqī jǐ?", vi: "Hôm nay là thứ mấy?" },
+          { zh: "今天我很忙。", py: "Jīntiān wǒ hěn máng.", vi: "Hôm nay tôi rất bận." },
+          { zh: "今天不去学校。", py: "Jīntiān bú qù xuéxiào.", vi: "Hôm nay không đến trường." }
+        ]
+      },
+      {
+        id: 42, lesson: 4, hanzi: "昨天", pinyin: "zuótiān", type: "Danh từ", meaning: "Hôm qua",
+        examples: [
+          { zh: "昨天星期天。", py: "Zuótiān xīngqītiān.", vi: "Hôm qua là chủ nhật." },
+          { zh: "昨天你去哪儿？", py: "Zuótiān nǐ qù nǎr?", vi: "Hôm qua bạn đi đâu?" },
+          { zh: "昨天我买书了。", py: "Zuótiān wǒ mǎi shū le.", vi: "Hôm qua tôi đã mua sách." }
+        ]
+      },
+      {
+        id: 43, lesson: 4, hanzi: "星期", pinyin: "xīngqī", type: "Danh từ", meaning: "Tuần, thứ",
+        examples: [
+          { zh: "星期一。", py: "Xīngqīyī.", vi: "Thứ hai." },
+          { zh: "星期天去天安门。", py: "Xīngqītiān qù Tiān'ānmén.", vi: "Chủ nhật đi Thiên An Môn." },
+          { zh: "一个星期。", py: "Yí gè xīngqī.", vi: "Một tuần lễ." }
+        ]
+      },
+      {
+        id: 44, lesson: 4, hanzi: "几", pinyin: "jǐ", type: "Đại từ", meaning: "Mấy, vài (dưới 10)",
+        examples: [
+          { zh: "今天星期几？", py: "Jīntiān xīngqī jǐ?", vi: "Hôm nay là thứ mấy?" },
+          { zh: "你要几个包子？", py: "Nǐ yào jǐ ge bāozi?", vi: "Bạn muốn mấy cái bánh bao?" },
+          { zh: "几点回学校？", py: "Jǐ diǎn huí xuéxiào?", vi: "Mấy giờ về trường?" }
+        ]
+      },
+      {
+        id: 45, lesson: 4, hanzi: "二", pinyin: "èr", type: "Số từ", meaning: "Hai (2)",
+        examples: [
+          { zh: "今天星期二。", py: "Jīntiān xīngqī'èr.", vi: "Hôm nay thứ ba." },
+          { zh: "十二块钱。", py: "Shí'èr kuài qián.", vi: "12 đồng tiền." },
+          { zh: "第二课。", py: "Dì-èr kè.", vi: "Bài học số 2." }
+        ]
+      },
+      {
+        id: 46, lesson: 4, hanzi: "三", pinyin: "sān", type: "Số từ", meaning: "Ba (3)",
+        examples: [
+          { zh: "星期三。", py: "Xīngqīsān.", vi: "Thứ tư." },
+          { zh: "三块五。", py: "Sān kuài wǔ.", vi: "3 đồng 5 hào." },
+          { zh: "三支笔。", py: "Sān zhī bǐ.", vi: "Ba cây bút." }
+        ]
+      },
+      {
+        id: 47, lesson: 4, hanzi: "四", pinyin: "sì", type: "Số từ", meaning: "Bốn (4)",
+        examples: [
+          { zh: "星期四。", py: "Xīngqīsì.", vi: "Thứ năm." },
+          { zh: "十四个人。", py: "Shísì gè rén.", vi: "14 người." },
+          { zh: "我家有四口人。", py: "Wǒ jiā yǒu sì kǒu rén.", vi: "Nhà tôi có 4 người." }
+        ]
+      },
+      {
+        id: 48, lesson: 4, hanzi: "哪儿", pinyin: "nǎr", type: "Đại từ", meaning: "Ở đâu, chỗ nào",
+        examples: [
+          { zh: "你去哪儿？", py: "Nǐ qù nǎr?", vi: "Bạn đi đâu đấy?" },
+          { zh: "他在哪儿？", py: "Tā zài nǎr?", vi: "Anh ấy ở đâu?" },
+          { zh: "食堂在哪儿？", py: "Shítáng zài nǎr?", vi: "Nhà ăn ở đâu?" }
+        ]
+      },
+      {
+        id: 49, lesson: 4, hanzi: "那儿", pinyin: "nàr", type: "Đại từ", meaning: "Ở kia, ở đấy",
+        examples: [
+          { zh: "我的车在那儿呢。", py: "Wǒ de chē zài nàr ne.", vi: "Xe của tôi ở đằng kia kìa." },
+          { zh: "我去那儿看书。", py: "Wǒ qù nàr kàn shū.", vi: "Tôi đến chỗ đó đọc sách." },
+          { zh: "那儿很多人。", py: "Nàr hěn duō rén.", vi: "Ở đó rất đông người." }
+        ]
+      },
+      {
+        id: 50, lesson: 4, hanzi: "我", pinyin: "wǒ", type: "Đại từ", meaning: "Tôi, tao, tớ (ngôi thứ nhất)",
+        examples: [
+          { zh: "我是学生。", py: "Wǒ shì xuésheng.", vi: "Tôi là học sinh." },
+          { zh: "我回学校。", py: "Wǒ huí xuéxiào.", vi: "Tôi về trường học." },
+          { zh: "这是我的书。", py: "Zhè shì wǒ de shū.", vi: "Đây là sách của tôi." }
+        ]
+      },
+      {
+        id: 51, lesson: 4, hanzi: "回", pinyin: "huí", type: "Động từ", meaning: "Về, trở về",
+        examples: [
+          { zh: "我回学校。", py: "Wǒ huí xuéxiào.", vi: "Tôi quay về trường học." },
+          { zh: "你几点回家？", py: "Nǐ jǐ diǎn huí jiā?", vi: "Mấy giờ bạn về nhà?" },
+          { zh: "回宿舍。", py: "Huí sùshè.", vi: "Về ký túc xá." }
+        ]
+      },
+      {
+        id: 52, lesson: 4, hanzi: "学校", pinyin: "xuéxiào", type: "Danh từ", meaning: "Trường học",
+        examples: [
+          { zh: "我们学校很大。", py: "Wǒmen xuéxiào hěn dà.", vi: "Trường chúng tôi rất lớn." },
+          { zh: "你去学校吗？", py: "Nǐ qù xuéxiào ma?", vi: "Bạn đi đến trường không?" },
+          { zh: "学校有很多留学生。", py: "Xuéxiào yǒu hěn duō liúxuéshēng.", vi: "Trường có rất nhiều lưu học sinh." }
+        ]
+      },
+      {
+        id: 53, lesson: 4, hanzi: "再见", pinyin: "zàijiàn", type: "Động từ", meaning: "Tạm biệt",
+        examples: [
+          { zh: "老师，再见！", py: "Lǎoshī, zàijiàn!", vi: "Chào tạm biệt thầy ạ!" },
+          { zh: "明天再见！", py: "Míngtiān zàijiàn!", vi: "Mai gặp lại nhé!" },
+          { zh: "朋友们，再见！", py: "Péngyoumen, zàijiàn!", vi: "Các bạn, tạm biệt nhé!" }
+        ]
+      },
+      {
+        id: 54, lesson: 4, hanzi: "对不起", pinyin: "duìbuqǐ", type: "Cụm từ", meaning: "Xin lỗi",
+        examples: [
+          { zh: "对不起，我迟到了。", py: "Duìbuqǐ, wǒ chídào le.", vi: "Xin lỗi, em đến muộn." },
+          { zh: "对不起！没关系！", py: "Duìbuqǐ! Méi guānxi!", vi: "Xin lỗi! - Không sao đâu!" },
+          { zh: "老师，对不起。", py: "Lǎoshī, duìbuqǐ.", vi: "Thưa thầy, em xin lỗi." }
+        ]
+      },
+      {
+        id: 55, lesson: 4, hanzi: "没关系", pinyin: "méi guānxi", type: "Cụm từ", meaning: "Không sao, không hề gì",
+        examples: [
+          { zh: "A: 对不起！B: 没关系！", py: "A: Duìbuqǐ! B: Méi guānxi!", vi: "A: Xin lỗi! B: Không có sao đâu!" },
+          { zh: "真的没关系。", py: "Zhēn de méi guānxi.", vi: "Thật sự không hề gì đâu." },
+          { zh: "这没关系。", py: "Zhè méi guānxi.", vi: "Điều này không thành vấn đề." }
+        ]
+      },
+
+      // BÀI 5: 这是王老师
+      {
+        id: 56, lesson: 5, hanzi: "这", pinyin: "zhè", type: "Đại từ", meaning: "Đây, này",
+        examples: [
+          { zh: "这是王老师。", py: "Zhè shì Wáng lǎoshī.", vi: "Đây là thầy giáo Vương." },
+          { zh: "这是什么书？", py: "Zhè shì shénme shū?", vi: "Đây là sách gì?" },
+          { zh: "这个箱子很重。", py: "Zhè ge xiāngzi hěn zhòng.", vi: "Cái vali này rất nặng." }
+        ]
+      },
+      {
+        id: 57, lesson: 5, hanzi: "是", pinyin: "shì", type: "Động từ", meaning: "Là, phải, vâng",
+        examples: [
+          { zh: "我是学生。", py: "Wǒ shì xuésheng.", vi: "Tôi là học sinh." },
+          { zh: "这是不是中药？", py: "Zhè shì bu shì zhōngyào?", vi: "Cái này có phải thuốc đông y không?" },
+          { zh: "是对的。", py: "Shì duì de.", vi: "Là đúng đấy." }
+        ]
+      },
+      {
+        id: 58, lesson: 5, hanzi: "老师", pinyin: "lǎoshī", type: "Danh từ", meaning: "Thầy cô giáo",
+        examples: [
+          { zh: "老师好！", py: "Lǎoshī hǎo!", vi: "Chào thầy cô ạ!" },
+          { zh: "王老师教我们汉语。", py: "Wáng lǎoshī jiāo wǒmen Hànyǔ.", vi: "Thầy Vương dạy chúng tôi tiếng Hán." },
+          { zh: "那是我的汉语老师。", py: "Nà shì wǒ de Hànyǔ lǎoshī.", vi: "Kia là giáo viên tiếng Hán của tôi." }
+        ]
+      },
+      {
+        id: 59, lesson: 5, hanzi: "您", pinyin: "nín", type: "Đại từ", meaning: "Ngài, ông, bà (kính trọng của 你)",
+        examples: [
+          { zh: "您好！", py: "Nín hǎo!", vi: "Chào ngài / Chào thầy cô ạ!" },
+          { zh: "请问您贵姓？", py: "Qǐngwèn nín guìxìng?", vi: "Xin hỏi quý tính của ngài là gì?" },
+          { zh: "给您钱。", py: "Gěi nín qián.", vi: "Gửi tiền cho bác/ngài ạ." }
+        ]
+      },
+      {
+        id: 60, lesson: 5, hanzi: "请", pinyin: "qǐng", type: "Động từ", meaning: "Mời, xin",
+        examples: [
+          { zh: "请进！请坐！", py: "Qǐng jìn! Qǐng zuò!", vi: "Mời vào! Mời ngồi!" },
+          { zh: "请喝茶！", py: "Qǐng hē chá!", vi: "Mời uống trà!" },
+          { zh: "请问，你叫什么名字？", py: "Qǐngwèn, nǐ jiào shénme míngzi?", vi: "Xin hỏi, bạn tên là gì?" }
+        ]
+      },
+      {
+        id: 61, lesson: 5, hanzi: "进", pinyin: "jìn", type: "Động từ", meaning: "Vào, tiến vào",
+        examples: [
+          { zh: "请进！", py: "Qǐng jìn!", vi: "Mời vào trong!" },
+          { zh: "进教室。", py: "Jìn jiàoshì.", vi: "Vào lớp học." },
+          { zh: "请大家进来。", py: "Qǐng dàjiā jìnlái.", vi: "Mời mọi người cùng vào." }
+        ]
+      },
+      {
+        id: 62, lesson: 5, hanzi: "坐", pinyin: "zuò", type: "Động từ", meaning: "Ngồi",
+        examples: [
+          { zh: "请坐！", py: "Qǐng zuò!", vi: "Xin mời ngồi!" },
+          { zh: "坐椅子上。", py: "Zuò yǐzi shang.", vi: "Ngồi trên ghế tựa." },
+          { zh: "请在这儿坐。", py: "Qǐng zài zhèr zuò.", vi: "Xin mời ngồi ở chỗ này." }
+        ]
+      },
+      {
+        id: 63, lesson: 5, hanzi: "喝", pinyin: "hē", type: "Động từ", meaning: "Uống",
+        examples: [
+          { zh: "你喝什么？", py: "Nǐ hē shénme?", vi: "Bạn uống gì?" },
+          { zh: "我喝咖啡。", py: "Wǒ hē kāfēi.", vi: "Tôi uống cà phê." },
+          { zh: "请喝茶。", py: "Qǐng hē chá.", vi: "Mời dùng trà." }
+        ]
+      },
+      {
+        id: 64, lesson: 5, hanzi: "茶", pinyin: "chá", type: "Danh từ", meaning: "Trà, chè",
+        examples: [
+          { zh: "中国茶很好喝。", py: "Zhōngguó chá hěn hǎohē.", vi: "Trà Trung Quốc rất ngon." },
+          { zh: "喝杯茶吧！", py: "Hē bēi chá ba!", vi: "Uống ly trà nhé!" },
+          { zh: "这是茶叶。", py: "Zhè shì cháyè.", vi: "Đây là lá trà." }
+        ]
+      },
+      {
+        id: 65, lesson: 5, hanzi: "谢谢", pinyin: "xièxie", type: "Động từ", meaning: "Cảm ơn",
+        examples: [
+          { zh: "谢谢老师！", py: "Xièxie lǎoshī!", vi: "Cảm ơn thầy cô!" },
+          { zh: "太谢谢你了！", py: "Tài xièxie nǐ le!", vi: "Cảm ơn bạn rất nhiều!" },
+          { zh: "谢谢你的帮助。", py: "Xièxie nǐ de bāngzhù.", vi: "Cảm ơn sự giúp đỡ của bạn." }
+        ]
+      },
+      {
+        id: 66, lesson: 5, hanzi: "客气", pinyin: "kèqi", type: "Tính từ", meaning: "Khách sáo",
+        examples: [
+          { zh: "不客气！", py: "Bú kèqi!", vi: "Đừng khách sáo! (Không có chi!)" },
+          { zh: "你太客气了。", py: "Nǐ tài kèqi le.", vi: "Bạn khách khí quá." },
+          { zh: "别客气，都是朋友。", py: "Bié kèqi, dōu shì péngyou.", vi: "Đừng khách sáo, đều là bạn bè cả mà." }
+        ]
+      },
+      {
+        id: 67, lesson: 5, hanzi: "工作", pinyin: "gōngzuò", type: "Danh từ/Động từ", meaning: "Công việc, làm việc",
+        examples: [
+          { zh: "工作忙吗？", py: "Gōngzuò máng ma?", vi: "Công việc có bận không?" },
+          { zh: "他在医院工作。", py: "Tā zài yīyuàn gōngzuò.", vi: "Anh ấy làm việc ở bệnh viện." },
+          { zh: "我喜欢这个工作。", py: "Wǒ xǐhuan zhè ge gōngzuò.", vi: "Tôi thích công việc này." }
+        ]
+      },
+      {
+        id: 68, lesson: 5, hanzi: "身体", pinyin: "shēntǐ", type: "Danh từ", meaning: "Thân thể, sức khỏe",
+        examples: [
+          { zh: "身体好吗？", py: "Shēntǐ hǎo ma?", vi: "Sức khỏe của bạn thế nào?" },
+          { zh: "很好，谢谢！", py: "Hěn hǎo, xièxie!", vi: "Rất khỏe, cảm ơn bạn!" },
+          { zh: "妈妈身体不太好。", py: "Māma shēntǐ bú tài hǎo.", vi: "Sức khỏe của mẹ không được tốt lắm." }
+        ]
+      },
+      {
+        id: 69, lesson: 5, hanzi: "十", pinyin: "shí", type: "Số từ", meaning: "Mười (10)",
+        examples: [
+          { zh: "十八楼。", py: "Shíbā lóu.", vi: "Tầng 18." },
+          { zh: "十个人。", py: "Shí gè rén.", vi: "10 người." },
+          { zh: "十月十日。", py: "Shí yuè shí rì.", vi: "Ngày 10 tháng 10." }
+        ]
+      },
+      {
+        id: 70, lesson: 5, hanzi: "日", pinyin: "rì", type: "Danh từ", meaning: "Ngày, mặt trời",
+        examples: [
+          { zh: "星期日。", py: "Xīngqīrì.", vi: "Chủ nhật." },
+          { zh: "今天五月八日。", py: "Jīntiān wǔ yuè bā rì.", vi: "Hôm nay ngày 8 tháng 5." },
+          { zh: "日用品。", py: "Rìyòngpǐn.", vi: "Đồ dùng hàng ngày." }
+        ]
+      },
+
+      // BÀI 6 ĐẾN BÀI 15 (Trích từ các bài học còn lại trong giáo trình)
+      {
+        id: 71, lesson: 6, hanzi: "请问", pinyin: "qǐngwèn", type: "Động từ", meaning: "Xin hỏi",
+        examples: [
+          { zh: "请问，你贵姓？", py: "Qǐngwèn, nǐ guìxìng?", vi: "Xin hỏi, ngài mang họ gì?" },
+          { zh: "请问，这是办公室吗？", py: "Qǐngwèn, zhè shì bàngōngshì ma?", vi: "Xin hỏi, đây có phải văn phòng không?" },
+          { zh: "请问，去图书馆怎么走？", py: "Qǐngwèn, qù túshūguǎn zěnme zǒu?", vi: "Xin hỏi, đi thư viện đường nào?" }
+        ]
+      },
+      {
+        id: 72, lesson: 6, hanzi: "叫", pinyin: "jiào", type: "Động từ", meaning: "Gọi, tên là",
+        examples: [
+          { zh: "你叫什么名字？", py: "Nǐ jiào shénme míngzi?", vi: "Bạn tên là gì?" },
+          { zh: "我叫张东。", py: "Wǒ jiào Zhāng Dōng.", vi: "Tôi tên là Trương Đông." },
+          { zh: "他叫麦克。", py: "Tā jiào Màikè.", vi: "Cậu ấy tên là Mike." }
+        ]
+      },
+      {
+        id: 73, lesson: 6, hanzi: "名字", pinyin: "míngzi", type: "Danh từ", meaning: "Tên họ, tên gọi",
+        examples: [
+          { zh: "他的名字很好听。", py: "Tā de míngzi hěn hǎotīng.", vi: "Tên của anh ấy nghe rất hay." },
+          { zh: "你写名字吧。", py: "Nǐ xiě míngzi ba.", vi: "Bạn viết tên vào đi." },
+          { zh: "这是我的名字。", py: "Zhè shì wǒ de míngzi.", vi: "Đây là tên của tôi." }
+        ]
+      },
+      {
+        id: 74, lesson: 6, hanzi: "哪", pinyin: "nǎ", type: "Đại từ", meaning: "Nào (quốc gia nào, cái nào)",
+        examples: [
+          { zh: "你是哪国人？", py: "Nǐ shì nǎ guó rén?", vi: "Bạn là người nước nào?" },
+          { zh: "哪个本子是你的？", py: "Nǎ ge běnzi shì nǐ de?", vi: "Cuốn vở nào là của bạn?" },
+          { zh: "你在哪个班学习？", py: "Nǐ zài nǎ ge bān xuéxí?", vi: "Bạn học ở lớp nào?" }
+        ]
+      },
+      {
+        id: 75, lesson: 6, hanzi: "国", pinyin: "guó", type: "Danh từ", meaning: "Nước, quốc gia",
+        examples: [
+          { zh: "中国人。", py: "Zhōngguó rén.", vi: "Người Trung Quốc." },
+          { zh: "美国人。", py: "Měiguó rén.", vi: "Người Mỹ." },
+          { zh: "外国朋友。", py: "Wàiguó péngyou.", vi: "Bạn bè người nước ngoài." }
+        ]
+      },
+      {
+        id: 76, lesson: 6, hanzi: "人", pinyin: "rén", type: "Danh từ", meaning: "Người, con người",
+        examples: [
+          { zh: "我是越南人。", py: "Wǒ shì Yuènán rén.", vi: "Tôi là người Việt Nam." },
+          { zh: "那个人是谁？", py: "Nà ge rén shì shéi?", vi: "Người kia là ai?" },
+          { zh: "很多人喜欢看电影。", py: "Hěn duō rén xǐhuan kàn diànyǐng.", vi: "Nhiều người thích xem phim." }
+        ]
+      },
+      {
+        id: 77, lesson: 6, hanzi: "书", pinyin: "shū", type: "Danh từ", meaning: "Sách",
+        examples: [
+          { zh: "这是中文书。", py: "Zhè shì Zhōngwén shū.", vi: "Đây là sách tiếng Trung." },
+          { zh: "我喜欢看书。", py: "Wǒ xǐhuan kàn shū.", vi: "Tôi thích đọc sách." },
+          { zh: "这本书是谁的？", py: "Zhè běn shū shì shéi de?", vi: "Quyển sách này của ai?" }
+        ]
+      },
+      {
+        id: 78, lesson: 6, hanzi: "谁", pinyin: "shéi", type: "Đại từ", meaning: "Ai",
+        examples: [
+          { zh: "那是谁的杂志？", py: "Nà shì shéi de zázhì?", vi: "Kia là tạp chí của ai?" },
+          { zh: "你们的老师是谁？", py: "Nǐmen de lǎoshī shì shéi?", vi: "Thầy giáo của các bạn là ai?" },
+          { zh: "谁去银行？", py: "Shéi qù yínháng?", vi: "Ai đi đến ngân hàng?" }
+        ]
+      },
+      {
+        id: 79, lesson: 6, hanzi: "的", pinyin: "de", type: "Trợ từ", meaning: "Của (trợ từ kết cấu)",
+        examples: [
+          { zh: "这是老师的书。", py: "Zhè shì lǎoshī de shū.", vi: "Đây là sách của thầy giáo." },
+          { zh: "新的自行车。", py: "Xīn de zìxíngchē.", vi: "Chiếc xe đạp mới." },
+          { zh: "我的朋友。", py: "Wǒ de péngyou.", vi: "Bạn của tôi." }
+        ]
+      },
+      {
+        id: 80, lesson: 6, hanzi: "朋友", pinyin: "péngyou", type: "Danh từ", meaning: "Bạn bè, người bạn",
+        examples: [
+          { zh: "他是我的好朋友。", py: "Tā shì wǒ de hǎo péngyou.", vi: "Cậu ấy là bạn thân của tôi." },
+          { zh: "我们都是朋友。", py: "Wǒmen dōu shì péngyou.", vi: "Chúng ta đều là bạn bè." },
+          { zh: "认识你很高兴。", py: "Rènshi nǐ hěn gāoxìng.", vi: "Quen biết bạn rất vui mừng." }
+        ]
+      },
+
+      // BÀI 7: 你吃什么
+      {
+        id: 81, lesson: 7, hanzi: "吃", pinyin: "chī", type: "Động từ", meaning: "Ăn",
+        examples: [
+          { zh: "你吃什么？", py: "Nǐ chī shénme?", vi: "Bạn ăn cái gì?" },
+          { zh: "我吃米饭。", py: "Wǒ chī mǐfàn.", vi: "Tôi ăn cơm." },
+          { zh: "好吃。", py: "Hǎochī.", vi: "Ngon miệng." }
+        ]
+      },
+      {
+        id: 82, lesson: 7, hanzi: "饭", pinyin: "fàn", type: "Danh từ", meaning: "Cơm, bữa ăn",
+        examples: [
+          { zh: "去食堂吃饭。", py: "Qù shítáng chī fàn.", vi: "Đến nhà ăn ăn cơm." },
+          { zh: "吃午饭。", py: "Chī wǔfàn.", vi: "Ăn bữa trưa." },
+          { zh: "米饭很好吃。", py: "Mǐfàn hěn hǎochī.", vi: "Cơm rất ngon." }
+        ]
+      },
+      {
+        id: 83, lesson: 7, hanzi: "食堂", pinyin: "shítáng", type: "Danh từ", meaning: "Nhà ăn, căng tin",
+        examples: [
+          { zh: "我去食堂。", py: "Wǒ qù shítáng.", vi: "Tôi đi đến nhà ăn." },
+          { zh: "学校食堂很大。", py: "Xuéxiào shítáng hěn dà.", vi: "Nhà ăn của trường rất lớn." },
+          { zh: "食堂的菜很便宜。", py: "Shítáng de cài hěn piányi.", vi: "Món ăn ở nhà ăn rất rẻ." }
+        ]
+      },
+      {
+        id: 84, lesson: 7, hanzi: "馒头", pinyin: "mántou", type: "Danh từ", meaning: "Bánh màn thầu (bánh bao chay)",
+        examples: [
+          { zh: "我吃馒头。", py: "Wǒ chī mántou.", vi: "Tôi ăn bánh màn thầu." },
+          { zh: "你要几个馒头？", py: "Nǐ yào jǐ ge mántou?", vi: "Bạn muốn mấy cái màn thầu?" },
+          { zh: "两个大馒头。", py: "Liǎng gè dà mántou.", vi: "Hai cái màn thầu to." }
+        ]
+      },
+      {
+        id: 85, lesson: 7, hanzi: "要", pinyin: "yào", type: "Động từ/Năng nguyện", meaning: "Muốn, cần, phải",
+        examples: [
+          { zh: "你要几个？", py: "Nǐ yào jǐ ge?", vi: "Bạn muốn mấy cái?" },
+          { zh: "我要一碗汤。", py: "Wǒ yào yì wǎn tāng.", vi: "Tôi muốn một bát canh." },
+          { zh: "我要去银行换钱。", py: "Wǒ yào qù yínháng huàn qián.", vi: "Tôi phải đi ngân hàng đổi tiền." }
+        ]
+      },
+      {
+        id: 86, lesson: 7, hanzi: "个", pinyin: "gè", type: "Lượng từ", meaning: "Cái, quả, chiếc (lượng từ đa năng)",
+        examples: [
+          { zh: "一个苹果。", py: "Yí gè píngguǒ.", vi: "Một quả táo." },
+          { zh: "两个人。", py: "Liǎng gè rén.", vi: "Hai người." },
+          { zh: "三个包子。", py: "Sān gè bāozi.", vi: "Ba cái bánh bao." }
+        ]
+      },
+      {
+        id: 87, lesson: 7, hanzi: "碗", pinyin: "wǎn", type: "Danh từ/Lượng từ", meaning: "Cái bát, chén",
+        examples: [
+          { zh: "一碗鸡蛋汤。", py: "Yì wǎn jīdàntāng.", vi: "Một bát canh trứng gà." },
+          { zh: "请给我一个碗。", py: "Qǐng gěi wǒ yí gè wǎn.", vi: "Xin cho tôi một cái bát." },
+          { zh: "他吃两碗米饭。", py: "Tā chī liǎng wǎn mǐfàn.", vi: "Anh ấy ăn hai bát cơm." }
+        ]
+      },
+      {
+        id: 88, lesson: 7, hanzi: "啤酒", pinyin: "píjiǔ", type: "Danh từ", meaning: "Bia",
+        examples: [
+          { zh: "我喝啤酒。", py: "Wǒ hē píjiǔ.", vi: "Tôi uống bia." },
+          { zh: "青岛啤酒。", py: "Qīngdǎo píjiǔ.", vi: "Bia Thanh Đảo." },
+          { zh: "不喝啤酒，喝茶。", py: "Bù hē píjiǔ, hē chá.", vi: "Không uống bia, uống trà." }
+        ]
+      },
+      {
+        id: 89, lesson: 7, hanzi: "饺子", pinyin: "jiǎozi", type: "Danh từ", meaning: "Bánh chẻo, sủi cảo",
+        examples: [
+          { zh: "这是饺子。", py: "Zhè shì jiǎozi.", vi: "Đây là bánh chẻo (sủi cảo)." },
+          { zh: "中国人喜欢吃饺子。", py: "Zhōngguó rén xǐhuan chī jiǎozi.", vi: "Người Trung Quốc rất thích ăn sủi cảo." },
+          { zh: "这些饺子很好吃。", py: "Zhèxiē jiǎozi hěn hǎochī.", vi: "Những cái sủi cảo này rất ngon." }
+        ]
+      },
+      {
+        id: 90, lesson: 7, hanzi: "包子", pinyin: "bāozi", type: "Danh từ", meaning: "Bánh bao",
+        examples: [
+          { zh: "热包子。", py: "Rè bāozi.", vi: "Bánh bao nóng hổi." },
+          { zh: "买四个包子。", py: "Mǎi sì gè bāozi.", vi: "Mua 4 cái bánh bao." },
+          { zh: "吃包子喝茶。", py: "Chī bāozi hē chá.", vi: "Ăn bánh bao và uống trà." }
+        ]
+      },
+
+      // BÀI 8: 苹果一斤多少钱
+      {
+        id: 91, lesson: 8, hanzi: "买", pinyin: "mǎi", type: "Động từ", meaning: "Mua",
+        examples: [
+          { zh: "你买什么？", py: "Nǐ mǎi shénme?", vi: "Bạn mua cái gì đấy?" },
+          { zh: "我买苹果。", py: "Wǒ mǎi píngguǒ.", vi: "Tôi mua táo." },
+          { zh: "去商店买东西。", py: "Qù shāngdiàn mǎi dōngxi.", vi: "Đi đến cửa hàng mua đồ." }
+        ]
+      },
+      {
+        id: 92, lesson: 8, hanzi: "苹果", pinyin: "píngguǒ", type: "Danh từ", meaning: "Quả táo",
+        examples: [
+          { zh: "苹果一斤多少钱？", py: "Píngguǒ yì jīn duōshao qián?", vi: "Táo bao nhiêu tiền một cân?" },
+          { zh: "红苹果很甜。", py: "Hóng píngguǒ hěn tián.", vi: "Táo đỏ rất ngọt." },
+          { zh: "我买五斤苹果。", py: "Wǒ mǎi wǔ jīn píngguǒ.", vi: "Tôi mua 5 cân táo." }
+        ]
+      },
+      {
+        id: 93, lesson: 8, hanzi: "斤", pinyin: "jīn", type: "Lượng từ", meaning: "Cân Trung Quốc (bằng 500g = 0.5kg)",
+        examples: [
+          { zh: "一斤苹果。", py: "Yì jīn píngguǒ.", vi: "Một cân táo (500g)." },
+          { zh: "你要几斤？", py: "Nǐ yào jǐ jīn?", vi: "Bạn muốn mua mấy cân?" },
+          { zh: "一公斤是两斤。", py: "Yì gōngjīn shì liǎng jīn.", vi: "1 kilôgam bằng 2 cân TQ." }
+        ]
+      },
+      {
+        id: 94, lesson: 8, hanzi: "贵", pinyin: "guì", type: "Tính từ", meaning: "Đắt, mắc tiền",
+        examples: [
+          { zh: "太贵了！", py: "Tài guì le!", vi: "Đắt quá rồi!" },
+          { zh: "不太贵。", py: "Bú tài guì.", vi: "Không đắt lắm." },
+          { zh: "这辆车很贵。", py: "Zhè liàng chē hěn guì.", vi: "Chiếc xe này rất đắt tiền." }
+        ]
+      },
+      {
+        id: 95, lesson: 8, hanzi: "块", pinyin: "kuài", type: "Lượng từ", meaning: "Đồng tệ (khẩu ngữ của 元)",
+        examples: [
+          { zh: "三块钱一斤。", py: "Sān kuài qián yì jīn.", vi: "Ba đồng một cân." },
+          { zh: "一共十六块。", py: "Yígòng shíliù kuài.", vi: "Tổng cộng 16 đồng." },
+          { zh: "两块五。", py: "Liǎng kuài wǔ.", vi: "Hai đồng rưỡi." }
+        ]
+      },
+      {
+        id: 96, lesson: 8, hanzi: "一共", pinyin: "yígòng", type: "Phó từ", meaning: "Tổng cộng, tất cả",
+        examples: [
+          { zh: "一共多少钱？", py: "Yígòng duōshao qián?", vi: "Tổng cộng bao nhiêu tiền?" },
+          { zh: "一共五十块。", py: "Yígòng wǔshí kuài.", vi: "Tổng cộng 50 đồng." },
+          { zh: "我们班一共十八个人。", py: "Wǒmen bān yígòng shíbā gè rén.", vi: "Lớp chúng tôi tổng cộng có 18 người." }
+        ]
+      },
+      {
+        id: 97, lesson: 8, hanzi: "给", pinyin: "gěi", type: "Động từ/Giới từ", meaning: "Đưa, cho, gửi cho",
+        examples: [
+          { zh: "给你钱。", py: "Gěi nǐ qián.", vi: "Gửi tiền cho bạn này." },
+          { zh: "我给你介绍一下儿。", py: "Wǒ gěi nǐmen jièshào yíxiàr.", vi: "Tôi giới thiệu với các bạn một chút." },
+          { zh: "给妈妈打电话。", py: "Gěi māma dǎ diànhuà.", vi: "Gọi điện thoại cho mẹ." }
+        ]
+      },
+      {
+        id: 98, lesson: 8, hanzi: "找", pinyin: "zhǎo", type: "Động từ", meaning: "Thối tiền lẻ / Tìm kiếm",
+        examples: [
+          { zh: "找您三十四块。", py: "Zhǎo nín sānshísì kuài.", vi: "Thối lại cho bác 34 đồng." },
+          { zh: "你找谁？", py: "Nǐ zhǎo shéi?", vi: "Bạn đang tìm ai thế?" },
+          { zh: "我找王老师。", py: "Wǒ zhǎo Wáng lǎoshī.", vi: "Tôi tìm thầy giáo Vương." }
+        ]
+      },
+
+      // BÀI 9: 我换人民币
+      {
+        id: 99, lesson: 9, hanzi: "换", pinyin: "huàn", type: "Động từ", meaning: "Đổi, thay",
+        examples: [
+          { zh: "我要换钱。", py: "Wǒ yào huàn qián.", vi: "Tôi muốn đổi tiền." },
+          { zh: "换人民币。", py: "Huàn rénmínbì.", vi: "Đổi Nhân dân tệ." },
+          { zh: "换衣服。", py: "Huàn yīfu.", vi: "Thay quần áo." }
+        ]
+      },
+      {
+        id: 100, lesson: 9, hanzi: "人民币", pinyin: "rénmínbì", type: "Danh từ", meaning: "Đồng Nhân Dân Tệ (RMB)",
+        examples: [
+          { zh: "换五百美元的人民币。", py: "Huàn wǔ bǎi měiyuán de rénmínbì.", vi: "Đổi 500 đôla Mỹ sang Nhân dân tệ." },
+          { zh: "这是人民币。", py: "Zhè shì rénmínbì.", vi: "Đây là tiền Nhân dân tệ." },
+          { zh: "人民币很方便。", py: "Rénmínbì hěn fāngbiàn.", vi: "Dùng Nhân dân tệ rất tiện." }
+        ]
+      },
+      {
+        id: 101, lesson: 9, hanzi: "百", pinyin: "bǎi", type: "Số từ", meaning: "Trăm (100)",
+        examples: [
+          { zh: "一百块。", py: "Yì bǎi kuài.", vi: "100 đồng." },
+          { zh: "二百美元。", py: "Èr bǎi měiyuán.", vi: "200 đôla Mỹ." },
+          { zh: "大概有一百多个职员。", py: "Dàgài yǒu yì bǎi duō gè zhíyuán.", vi: "Khoảng hơn 100 nhân viên." }
+        ]
+      },
+      {
+        id: 102, lesson: 9, hanzi: "等", pinyin: "děng", type: "Động từ", meaning: "Đợi, chờ",
+        examples: [
+          { zh: "请等一会儿。", py: "Qǐng děng yíhuìr.", vi: "Xin đợi một lát." },
+          { zh: "我等朋友。", py: "Wǒ děng péngyou.", vi: "Tôi đợi bạn." },
+          { zh: "等一下。", py: "Děng yíxià.", vi: "Đợi một chút." }
+        ]
+      },
+
+      // BÀI 10 - 15 (Từ vựng nâng cao trong Hán 1)
+      {
+        id: 103, lesson: 10, hanzi: "住", pinyin: "zhù", type: "Động từ", meaning: "Ở, sinh sống, trú ngụ",
+        examples: [
+          { zh: "他住哪儿？", py: "Tā zhù nǎr?", vi: "Anh ấy sống ở đâu?" },
+          { zh: "我住十八楼。", py: "Wǒ zhù shíbā lóu.", vi: "Tôi ở tòa nhà tầng 18." },
+          { zh: "你住几号房间？", py: "Nǐ zhù jǐ hào fángjiān?", vi: "Bạn ở phòng số mấy?" }
+        ]
+      },
+      {
+        id: 104, lesson: 10, hanzi: "知道", pinyin: "zhīdào", type: "Động từ", meaning: "Biết, hiểu rõ",
+        examples: [
+          { zh: "你知道他的电话号码吗？", py: "Nǐ zhīdào tā de diànhuà hàomǎ ma?", vi: "Bạn có biết số điện thoại của anh ấy không?" },
+          { zh: "我知道。", py: "Wǒ zhīdào.", vi: "Tôi biết rồi." },
+          { zh: "我不知道。", py: "Wǒ bù zhīdào.", vi: "Tôi không biết." }
+        ]
+      },
+      {
+        id: 105, lesson: 10, hanzi: "电话", pinyin: "diànhuà", type: "Danh từ", meaning: "Điện thoại",
+        examples: [
+          { zh: "打电话。", py: "Dǎ diànhuà.", vi: "Gọi điện thoại." },
+          { zh: "电话号码是多少？", py: "Diànhuà hàomǎ shì duōshao?", vi: "Số điện thoại là bao nhiêu?" },
+          { zh: "我家的电话。", py: "Wǒ jiā de diànhuà.", vi: "Điện thoại nhà tôi." }
+        ]
+      },
+      {
+        id: 106, lesson: 10, hanzi: "手机", pinyin: "shǒujī", type: "Danh từ", meaning: "Điện thoại di động",
+        examples: [
+          { zh: "我的手机是新的。", py: "Wǒ de shǒujī shì xīn de.", vi: "Điện thoại của tôi là máy mới." },
+          { zh: "你有手机吗？", py: "Nǐ yǒu shǒujī ma?", vi: "Bạn có điện thoại di động không?" },
+          { zh: "看手机。", py: "Kàn shǒujī.", vi: "Xem điện thoại." }
+        ]
+      },
+      {
+        id: 107, lesson: 11, hanzi: "我们", pinyin: "wǒmen", type: "Đại từ", meaning: "Chúng tôi, chúng ta",
+        examples: [
+          { zh: "我们都是留学生。", py: "Wǒmen dōu shì liúxuéshēng.", vi: "Chúng tôi đều là lưu học sinh." },
+          { zh: "我们去学校吧。", py: "Wǒmen qù xuéxiào ba.", vi: "Chúng ta đến trường thôi." },
+          { zh: "我们的老师很好。", py: "Wǒmen de lǎoshī hěn hǎo.", vi: "Giáo viên của chúng tôi rất tốt." }
+        ]
+      },
+      {
+        id: 108, lesson: 11, hanzi: "都", pinyin: "dōu", type: "Phó từ", meaning: "Đều, tất cả",
+        examples: [
+          { zh: "他们都是中国人。", py: "Tāmen dōu shì Zhōngguó rén.", vi: "Họ đều là người Trung Quốc." },
+          { zh: "我们都学汉语。", py: "Wǒmen dōu xué Hànyǔ.", vi: "Chúng tôi đều học tiếng Hán." },
+          { zh: "爸爸妈妈都很好。", py: "Bàba māma dōu hěn hǎo.", vi: "Bố mẹ đều rất khỏe mạnh." }
+        ]
+      },
+      {
+        id: 109, lesson: 11, hanzi: "也", pinyin: "yě", type: "Phó từ", meaning: "Cũng",
+        examples: [
+          { zh: "我也是留学生。", py: "Wǒ yě shì liúxuéshēng.", vi: "Tôi cũng là lưu học sinh." },
+          { zh: "他也不去。", py: "Tā yě bú qù.", vi: "Anh ấy cũng không đi." },
+          { zh: "她也学英语。", py: "Tā yě xué Yīngyǔ.", vi: "Cô ấy cũng học tiếng Anh." }
+        ]
+      },
+      {
+        id: 110, lesson: 12, hanzi: "觉得", pinyin: "juéde", type: "Động từ", meaning: "Cảm thấy, thấy rằng",
+        examples: [
+          { zh: "你觉得汉语难吗？", py: "Nǐ juéde Hànyǔ nán ma?", vi: "Bạn cảm thấy tiếng Hán có khó không?" },
+          { zh: "我觉得不难。", py: "Wǒ juéde bù nán.", vi: "Tôi cảm thấy không khó lắm." },
+          { zh: "我觉得这件衣服很漂亮。", py: "Wǒ juéde zhè jiàn yīfu hěn piàoliang.", vi: "Tôi thấy bộ quần áo này rất đẹp." }
+        ]
+      },
+      {
+        id: 111, lesson: 12, hanzi: "语法", pinyin: "yǔfǎ", type: "Danh từ", meaning: "Ngữ pháp",
+        examples: [
+          { zh: "汉语语法不太难。", py: "Hànyǔ yǔfǎ bú tài nán.", vi: "Ngữ pháp tiếng Hán không khó lắm." },
+          { zh: "学习语法。", py: "Xuéxí yǔfǎ.", vi: "Học tập ngữ pháp." },
+          { zh: "这课的语法很清楚。", py: "Zhè kè de yǔfǎ hěn qīngchu.", vi: "Ngữ pháp bài này rất rõ ràng." }
+        ]
+      },
+      {
+        id: 112, lesson: 12, hanzi: "听", pinyin: "tīng", type: "Động từ", meaning: "Nghe",
+        examples: [
+          { zh: "请听我说。", py: "Qǐng tīng wǒ shuō.", vi: "Xin hãy nghe tôi nói." },
+          { zh: "听录音。", py: "Tīng lùyīn.", vi: "Nghe ghi âm." },
+          { zh: "听音乐。", py: "Tīng yīnyuè.", vi: "Nghe nhạc." }
+        ]
+      },
+      {
+        id: 113, lesson: 12, hanzi: "说", pinyin: "shuō", type: "Động từ", meaning: "Nói",
+        examples: [
+          { zh: "跟我说。", py: "Gēn wǒ shuō.", vi: "Nói theo tôi." },
+          { zh: "他说汉语说得很好。", py: "Tā shuō Hànyǔ shuō de hěn hǎo.", vi: "Anh ấy nói tiếng Hán rất giỏi." },
+          { zh: "请再说一遍。", py: "Qǐng zài shuō yí biàn.", vi: "Xin vui lòng nói lại một lần nữa." }
+        ]
+      },
+      {
+        id: 114, lesson: 12, hanzi: "读", pinyin: "dú", type: "Động từ", meaning: "Đọc",
+        examples: [
+          { zh: "跟我读。", py: "Gēn wǒ dú.", vi: "Đọc theo tôi." },
+          { zh: "读课文。", py: "Dú kèwén.", vi: "Đọc bài khóa (bài đọc)." },
+          { zh: "大声朗读。", py: "Dàshēng lǎngdú.", vi: "Đọc to rõ ràng." }
+        ]
+      },
+      {
+        id: 115, lesson: 12, hanzi: "写", pinyin: "xiě", type: "Động từ", meaning: "Viết",
+        examples: [
+          { zh: "跟我写汉字。", py: "Gēn wǒ xiě Hànzì.", vi: "Viết chữ Hán cùng với tôi." },
+          { zh: "写信给爸爸。", py: "Xiě xìn gěi bàba.", vi: "Viết thư cho bố." },
+          { zh: "再写一遍。", py: "Zài xiě yí biàn.", vi: "Viết lại một lần nữa." }
+        ]
+      },
+      {
+        id: 116, lesson: 13, hanzi: "箱子", pinyin: "xiāngzi", type: "Danh từ", meaning: "Hòm, vali, thùng",
+        examples: [
+          { zh: "你有箱子吗？", py: "Nǐ yǒu xiāngzi ma?", vi: "Bạn có vali không?" },
+          { zh: "这个箱子很重。", py: "Zhè ge xiāngzi hěn zhòng.", vi: "Cái vali này rất nặng." },
+          { zh: "箱子里有什么？", py: "Xiāngzi lǐ yǒu shénme?", vi: "Trong vali có những gì?" }
+        ]
+      },
+      {
+        id: 117, lesson: 13, hanzi: "重", pinyin: "zhòng", type: "Tính từ", meaning: "Nặng",
+        examples: [
+          { zh: "黑的很重，红的很轻。", py: "Hēi de hěn zhòng, hóng de hěn qīng.", vi: "Cái màu đen rất nặng, cái màu đỏ rất nhẹ." },
+          { zh: "箱子重不重？", py: "Xiāngzi zhòng bu zhòng?", vi: "Chiếc vali có nặng không?" },
+          { zh: "太重了，拿不动。", py: "Tài zhòng le, ná bú dòng.", vi: "Nặng quá, nhấc không nổi." }
+        ]
+      },
+      {
+        id: 118, lesson: 13, hanzi: "药", pinyin: "yào", type: "Danh từ", meaning: "Thuốc (chữa bệnh)",
+        examples: [
+          { zh: "这是中药还是西药？", py: "Zhè shì zhōngyào háishi xīyào?", vi: "Đây là thuốc bắc hay thuốc tây?" },
+          { zh: "生病要吃药。", py: "Shēngbìng yào chī yào.", vi: "Bị ốm thì phải uống thuốc." },
+          { zh: "这不是药，这是茶叶。", py: "Zhè bú shì yào, zhè shì cháyè.", vi: "Đây không phải thuốc, đây là lá trà." }
+        ]
+      },
+      {
+        id: 119, lesson: 14, hanzi: "车", pinyin: "chē", type: "Danh từ", meaning: "Xe cộ",
+        examples: [
+          { zh: "你的车是新的还是旧的？", py: "Nǐ de chē shì xīn de háishi jiù de?", vi: "Xe của bạn là xe mới hay xe cũ?" },
+          { zh: "自行车。", py: "Zìxíngchē.", vi: "Xe đạp." },
+          { zh: "坐出租车。", py: "Zuò chūzūchē.", vi: "Đi xe taxi." }
+        ]
+      },
+      {
+        id: 120, lesson: 14, hanzi: "新", pinyin: "xīn", type: "Tính từ", meaning: "Mới",
+        examples: [
+          { zh: "新同学。", py: "Xīn tóngxué.", vi: "Bạn học mới." },
+          { zh: "这辆车很新。", py: "Zhè liàng chē hěn xīn.", vi: "Chiếc xe này rất mới." },
+          { zh: "预习新课生词。", py: "Yùxí xīn kè shēngcí.", vi: "Chuẩn bị từ mới bài học mới." }
+        ]
+      },
+      {
+        id: 121, lesson: 14, hanzi: "旧", pinyin: "jiù", type: "Tính từ", meaning: "Cũ",
+        examples: [
+          { zh: "旧书很便宜。", py: "Jiù shū hěn piányi.", vi: "Sách cũ rất rẻ." },
+          { zh: "旧自行车。", py: "Jiù zìxíngchē.", vi: "Chiếc xe đạp cũ." },
+          { zh: "我的包旧了。", py: "Wǒ de bāo jiù le.", vi: "Túi của tôi đã cũ rồi." }
+        ]
+      },
+      {
+        id: 122, lesson: 15, hanzi: "公司", pinyin: "gōngsī", type: "Danh từ", meaning: "Công ty",
+        examples: [
+          { zh: "你们公司有多少职员？", py: "Nǐmen gōngsī yǒu duōshao zhíyuán?", vi: "Công ty các bạn có bao nhiêu nhân viên?" },
+          { zh: "外贸公司。", py: "Wàimào gōngsī.", vi: "Công ty ngoại thương." },
+          { zh: "他在一家大公司工作。", py: "Tā zài yì jiā dà gōngsī gōngzuò.", vi: "Anh ấy làm việc ở một công ty lớn." }
+        ]
+      },
+      {
+        id: 123, lesson: 15, hanzi: "职员", pinyin: "zhíyuán", type: "Danh từ", meaning: "Nhân viên, viên chức",
+        examples: [
+          { zh: "大概有一百多个职员。", py: "Dàgài yǒu yì bǎi duō gè zhíyuán.", vi: "Khoảng hơn 100 nhân viên." },
+          { zh: "银行职员。", py: "Yínháng zhíyuán.", vi: "Nhân viên ngân hàng." },
+          { zh: "他们都是外国职员。", py: "Tāmen dōu shì wàiguó zhíyuán.", vi: "Họ đều là nhân viên người nước ngoài." }
+        ]
+      }
+    ];
+
+    // Cẩm nang bộ thủ thường gặp trong Hán 1
+    const RADICALS_DATA = [
+      {
+        char: "亻", name: "Nhân đứng (人)", pinyin: "rén", strokes: 2, meaning: "Liên quan đến con người, hành vi nhân thế",
+        words: [{ zh: "你", py: "nǐ (bạn)" }, { zh: "他", py: "tā (anh ấy)" }, { zh: "们", py: "men (chúng tôi)" }, { zh: "住", py: "zhù (ở, ngụ)" }]
+      },
+      {
+        char: "女", name: "Nữ", pinyin: "nǚ", strokes: 3, meaning: "Liên quan đến phụ nữ, phái đẹp, người mẹ",
+        words: [{ zh: "她", py: "tā (cô ấy)" }, { zh: "妈", py: "mā (mẹ)" }, { zh: "好", py: "hǎo (tốt, đẹp)" }, { zh: "妹", py: "mèi (em gái)" }]
+      },
+      {
+        char: "氵", name: "Ba chấm thủy (水)", pinyin: "shuǐ", strokes: 3, meaning: "Liên quan đến nước, sông ngòi, chất lỏng",
+        words: [{ zh: "没", py: "méi (chưa, không)" }, { zh: "汉", py: "hàn (Hán tộc/ngữ)" }, { zh: "汤", py: "tāng (canh)" }, { zh: "酒", py: "jiǔ (rượu)" }]
+      },
+      {
+        char: "口", name: "Khẩu", pinyin: "kǒu", strokes: 3, meaning: "Liên quan đến miệng, ăn uống, lời gọi",
+        words: [{ zh: "吃", py: "chī (ăn)" }, { zh: "喝", py: "hē (uống)" }, { zh: "叫", py: "jiào (gọi, tên)" }, { zh: "呢", py: "ne (trợ từ)" }]
+      },
+      {
+        char: "讠", name: "Ngôn (言)", pinyin: "yán", strokes: 2, meaning: "Liên quan đến ngôn ngữ, lời nói, phát ngôn",
+        words: [{ zh: "语", py: "yǔ (ngôn ngữ)" }, { zh: "谢", py: "xiè (cảm ơn)" }, { zh: "请", py: "qǐng (mời, xin)" }, { zh: "话", py: "huà (lời nói)" }]
+      },
+      {
+        char: "日", name: "Nhật", pinyin: "rì", strokes: 4, meaning: "Mặt trời, ban ngày, thời gian",
+        words: [{ zh: "明", py: "míng (sáng, mai)" }, { zh: "昨", py: "zuó (hôm qua)" }, { zh: "是", py: "shì (là, phải)" }, { zh: "时", py: "shí (thời gian)" }]
+      },
+      {
+        char: "月", name: "Nguyệt / Nhục", pinyin: "yuè", strokes: 4, meaning: "Mặt trăng, chu kỳ tháng hoặc cơ thể thịt",
+        words: [{ zh: "期", py: "qī (kỳ, tuần)" }, { zh: "朋", py: "péng (bạn bè)" }, { zh: "服", py: "fú (quần áo)" }]
+      },
+      {
+        char: "宀", name: "Miên", pinyin: "mián", strokes: 3, meaning: "Mái nhà, nơi trú ẩn, che chở",
+        words: [{ zh: "家", py: "jiā (nhà, gia đình)" }, { zh: "字", py: "zì (chữ Hán)" }, { zh: "安", py: "ān (yên, bình an)" }]
+      },
+      {
+        char: "木", name: "Mộc", pinyin: "mù", strokes: 4, meaning: "Cây cối, gỗ, đồ dùng bàn ghế",
+        words: [{ zh: "本", py: "běn (sách/cuốn)" }, { zh: "机", py: "jī (máy móc)" }, { zh: "杯", py: "bēi (cốc, ly)" }]
+      },
+      {
+        char: "手 / 扌", name: "Thủ / Tài gảy", pinyin: "shǒu", strokes: 3, meaning: "Bàn tay, thao tác bằng tay",
+        words: [{ zh: "找", py: "zhǎo (tìm, thối tiền)" }, { zh: "换", py: "huàn (đổi)" }, { zh: "报", py: "bào (báo chí)" }]
+      },
+      {
+        char: "走 / 辶", name: "Tẩu / Quai xước", pinyin: "zǒu / chuò", strokes: 3, meaning: "Hành động bước đi, di chuyển, đường đi",
+        words: [{ zh: "进", py: "jìn (vào)" }, { zh: "还", py: "hái (còn)" }, { zh: "迎", py: "yíng (đón tiếp)" }, { zh: "远", py: "yuǎn (xa)" }]
+      },
+      {
+        char: "饣 / 食", name: "Thực", pinyin: "shí", strokes: 3, meaning: "Liên quan đến thức ăn, việc ăn uống",
+        words: [{ zh: "饭", py: "fàn (cơm)" }, { zh: "馒", py: "mán (màn thầu)" }, { zh: "饱", py: "bǎo (no nê)" }]
+      }
+    ];
+
+    // Chữ mẫu luyện viết tiêu biểu rút từ 15 bài Hán 1
+    const DEFAULT_PRACTICE_CHARS = [
+      { char: "你", pinyin: "nǐ", meaning: "Bạn, anh, chị (ngôi 2)", steps: "Trái trước phải sau (bộ Nhân đứng 亻 trước, 尔 sau)." },
+      { char: "好", pinyin: "hǎo", meaning: "Tốt, đẹp, hay", steps: "Trái trước phải sau (bộ Nữ 女 trước, bộ Tử 子 sau)." },
+      { char: "我", pinyin: "wǒ", meaning: "Tôi, ta, tớ", steps: "Phẩy ngắn -> Ngang -> Sổ móc -> Hất -> Nét cong mác có móc -> Chấm trên cùng." },
+      { char: "大", pinyin: "dà", meaning: "To, lớn", steps: "Ngang trước -> Phẩy trái -> Mác sang phải." },
+      { char: "不", pinyin: "bù", meaning: "Không, chẳng", steps: "Ngang trên -> Phẩy trái -> Sổ thẳng -> Nét chấm bên phải." },
+      { char: "人", pinyin: "rén", meaning: "Con người", steps: "Phẩy trước, mác sau (丿 trước, ㇏ sau)." },
+      { char: "回", pinyin: "huí", meaning: "Về, trở về", steps: "Vào trước đóng sau (Sổ ngoài -> Ngang gập -> Viết 口 trong -> Đóng đáy 口 lớn)." },
+      { char: "学", pinyin: "xué", meaning: "Học tập", steps: "Trên trước dưới sau (3 nét chấm phẩy đầu -> Mái nhà 宀 -> Chữ Tử 子 dưới cùng)." },
+      { char: "中", pinyin: "zhōng", meaning: "Giữa, Trung Quốc", steps: "Viết khung chữ Khẩu 口 trước -> Nét sổ thẳng đứng xuyên qua giữa." },
+      { char: "国", pinyin: "guó", meaning: "Quốc gia, nước", steps: "Vào trước đóng sau (Khung Vi 囗 bao ngoài -> Viết chữ Ngọc 玉 ở trong -> Đóng đáy)." },
+      { char: "车", pinyin: "chē", meaning: "Xe cộ", steps: "Ngang trên -> Nét gấp khúc -> Ngang dài -> Sổ thẳng đứng kéo suốt." },
+      { char: "电", pinyin: "diàn", meaning: "Điện", steps: "Viết chữ Nhật 日 bên trên -> Sổ gập cong móc xuống dưới." }
+    ];
+
+    function speakChinese(text) {
+      if (!('speechSynthesis' in window)) {
+        alert("Trình duyệt không hỗ trợ Web Speech API.");
+        return;
+      }
+      window.speechSynthesis.cancel();
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = 'zh-CN';
+      utterance.rate = 0.85; // Phát âm tốc độ chuẩn cho người học
+      window.speechSynthesis.speak(utterance);
+    }
+
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-pane').forEach(el => el.classList.add('hidden'));
+      document.querySelectorAll('.tab-button').forEach(btn => {
+        btn.classList.remove('bg-rose-600', 'text-white', 'shadow-sm');
+        btn.classList.add('text-slate-600', 'dark:text-slate-300');
+      });
+
+      const activePane = document.getElementById('tab-' + tabId);
+      const activeBtn = document.getElementById('tabBtn-' + tabId);
+
+      if (activePane) activePane.classList.remove('hidden');
+      if (activeBtn) {
+        activeBtn.classList.add('bg-rose-600', 'text-white', 'shadow-sm');
+        activeBtn.classList.remove('text-slate-600', 'dark:text-slate-300');
+      }
+
+      if (tabId === 'luyen-viet') {
+        setTimeout(initCanvasSize, 50);
+      }
+    }
+
+    let selectedLesson = 'ALL';
+
+    function renderVocabList(items) {
+      const container = document.getElementById('vocabListContainer');
+      const badge = document.getElementById('vocabCountBadge');
+      badge.textContent = `Hiển thị ${items.length} từ vựng bài học`;
+
+      if (items.length === 0) {
+        container.innerHTML = `
+          <div class="col-span-full py-12 text-center text-slate-400">
+            <i class="fa-solid fa-inbox text-4xl mb-2"></i>
+            <p>Không tìm thấy từ vựng nào khớp với từ khóa</p>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = items.map(word => `
+        <div class="bg-white dark:bg-slate-800 rounded-3xl p-5 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md transition">
+          <div class="flex items-start justify-between pb-3 border-b border-slate-100 dark:border-slate-700 mb-3">
+            <div class="flex items-baseline gap-3">
+              <span onclick="speakChinese('${word.hanzi}')" title="Bấm nghe phát âm" 
+                    class="font-hanzi text-4xl font-black text-slate-800 dark:text-white cursor-pointer hover:text-rose-600 transition">
+                ${word.hanzi}
+              </span>
+              <div>
+                <span class="text-lg font-bold text-amber-500">${word.pinyin}</span>
+                <span class="ml-2 text-xs px-2.5 py-0.5 rounded-full bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 font-semibold">
+                  Bài ${word.lesson} • ${word.type}
+                </span>
+              </div>
+            </div>
+            
+            <div class="flex items-center gap-1.5">
+              <button onclick="speakChinese('${word.hanzi}')" class="p-2.5 rounded-xl bg-rose-50 dark:bg-slate-700 text-rose-600 dark:text-rose-300 hover:bg-rose-100 transition" title="Nghe phát âm">
+                <i class="fa-solid fa-volume-high"></i>
+              </button>
+              <button onclick="jumpToPracticeWriting('${word.hanzi}')" class="p-2.5 rounded-xl bg-indigo-50 dark:bg-slate-700 text-indigo-600 dark:text-indigo-300 hover:bg-indigo-100 transition" title="Luyện viết chữ này">
+                <i class="fa-solid fa-pen-nib"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="text-sm font-semibold text-slate-800 dark:text-slate-100 mb-3">
+            <span class="text-slate-400 font-normal">Nghĩa:</span> ${word.meaning}
+          </div>
+
+          <!-- 3 Câu ví dụ mẫu ngữ cảnh Hán 1 -->
+          <div class="space-y-2 bg-slate-50 dark:bg-slate-900/50 p-3.5 rounded-2xl border border-slate-100 dark:border-slate-800">
+            <span class="text-[11px] font-bold text-slate-400 uppercase tracking-wider block">3 Ví dụ ứng dụng:</span>
+            ${word.examples.map(ex => `
+              <div class="text-xs space-y-0.5">
+                <div class="flex items-center justify-between text-slate-800 dark:text-slate-200">
+                  <span class="font-hanzi font-semibold text-sm">${ex.zh}</span>
+                  <button onclick="speakChinese('${ex.zh}')" class="text-slate-400 hover:text-rose-500 text-xs ml-2 p-1">
+                    <i class="fa-solid fa-volume-high"></i>
+                  </button>
+                </div>
+                <div class="text-amber-600 dark:text-amber-400 text-[11px] font-medium">${ex.py}</div>
+                <div class="text-slate-500 dark:text-slate-400 italic text-[11px]">${ex.vi}</div>
+              </div>
+            `).join('<div class="h-px bg-slate-200 dark:bg-slate-800 my-1.5"></div>')}
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function filterByLesson(lessonNum) {
+      selectedLesson = lessonNum;
+      applyVocabFilters();
+    }
+
+    function applyVocabFilters() {
+      const keyword = document.getElementById('vocabSearchInput').value.trim().toLowerCase();
+      const filtered = HAN1_DATA.filter(item => {
+        const matchLesson = (selectedLesson === 'ALL') || (item.lesson.toString() === selectedLesson);
+        const matchKw = !keyword || 
+          item.hanzi.includes(keyword) || 
+          item.pinyin.toLowerCase().includes(keyword) || 
+          item.meaning.toLowerCase().includes(keyword);
+        return matchLesson && matchKw;
+      });
+      renderVocabList(filtered);
+    }
+
+    document.getElementById('vocabSearchInput').addEventListener('input', applyVocabFilters);
+
+    function handleDictionarySearch() {
+      const q = document.getElementById('dictInput').value.trim().toLowerCase();
+      const card = document.getElementById('dictResultCard');
+      if (!q) {
+        card.innerHTML = '';
+        return;
+      }
+
+      const match = HAN1_DATA.find(w => 
+        w.hanzi.toLowerCase() === q || 
+        w.pinyin.toLowerCase() === q || 
+        w.meaning.toLowerCase().includes(q)
+      ) || HAN1_DATA.find(w => 
+        w.hanzi.includes(q) || 
+        w.pinyin.toLowerCase().includes(q)
+      );
+
+      if (!match) {
+        card.innerHTML = `
+          <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 text-center text-slate-400">
+            <i class="fa-solid fa-circle-exclamation text-3xl mb-2 text-amber-500"></i>
+            <p>Không tìm thấy từ này trong danh sách từ vựng Hán 1.</p>
+          </div>
+        `;
+        return;
+      }
+
+      card.innerHTML = `
+        <div class="bg-white dark:bg-slate-800 p-6 rounded-3xl border border-slate-200 dark:border-slate-700 shadow-md">
+          <div class="flex items-center justify-between pb-4 border-b border-slate-100 dark:border-slate-700 mb-4">
+            <div>
+              <span class="font-hanzi text-6xl font-black text-rose-600 dark:text-rose-400 block">${match.hanzi}</span>
+              <span class="text-2xl font-bold text-amber-500">${match.pinyin}</span>
+              <span class="ml-2 text-xs px-2.5 py-0.5 rounded-full bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 font-semibold">Bài ${match.lesson} • ${match.type}</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <button onclick="speakChinese('${match.hanzi}')" class="p-3.5 rounded-2xl bg-rose-600 text-white shadow-lg hover:scale-105 transition" title="Nghe phát âm">
+                <i class="fa-solid fa-volume-high text-lg"></i>
+              </button>
+              <button onclick="jumpToPracticeWriting('${match.hanzi}')" class="p-3.5 rounded-2xl bg-indigo-600 text-white shadow-lg hover:scale-105 transition" title="Tập viết chữ">
+                <i class="fa-solid fa-pen-nib text-lg"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="mb-4">
+            <span class="text-xs uppercase text-slate-400 font-semibold tracking-wider">Dịch nghĩa tiếng Việt:</span>
+            <div class="text-lg font-bold text-emerald-600 dark:text-emerald-400">${match.meaning}</div>
+          </div>
+
+          <div>
+            <span class="text-xs uppercase text-slate-400 font-semibold tracking-wider block mb-2">3 Câu ví dụ chi tiết:</span>
+            <div class="space-y-2.5">
+              ${match.examples.map(ex => `
+                <div class="p-3 rounded-2xl bg-slate-50 dark:bg-slate-900/60 border border-slate-100 dark:border-slate-800">
+                  <div class="flex items-center justify-between">
+                    <span class="font-hanzi text-base font-semibold text-slate-800 dark:text-white">${ex.zh}</span>
+                    <button onclick="speakChinese('${ex.zh}')" class="text-rose-500 text-xs p-1">
+                      <i class="fa-solid fa-volume-high"></i>
+                    </button>
+                  </div>
+                  <div class="text-amber-500 text-xs font-medium">${ex.py}</div>
+                  <div class="text-slate-500 dark:text-slate-400 text-xs italic mt-0.5">${ex.vi}</div>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function setDictSearch(val) {
+      document.getElementById('dictInput').value = val;
+      handleDictionarySearch();
+    }
+
+    let currentFcIndex = 0;
+    let isFcCardFlipped = false;
+    let masteredSet = new Set();
+    let currentFcWord = HAN1_DATA[0];
+
+    function updateFlashcardUI() {
+      currentFcWord = HAN1_DATA[currentFcIndex];
+      isFcCardFlipped = false;
+      document.getElementById('flashcardInner').classList.remove('rotate-y-180');
+
+      document.getElementById('fcWord').textContent = currentFcWord.hanzi;
+      document.getElementById('fcBackWord').textContent = currentFcWord.hanzi;
+      document.getElementById('fcBackPinyin').textContent = currentFcWord.pinyin;
+      document.getElementById('fcBackType').textContent = `Bài ${currentFcWord.lesson} • ${currentFcWord.type}`;
+      document.getElementById('fcBackMeaning').textContent = currentFcWord.meaning;
+
+      const exContainer = document.getElementById('fcBackExamples');
+      exContainer.innerHTML = currentFcWord.examples.map(ex => `
+        <div class="p-2 rounded-xl bg-slate-100 dark:bg-slate-700/60 text-xs">
+          <div class="font-hanzi font-semibold">${ex.zh} <span class="font-sans text-amber-500 font-normal">(${ex.py})</span></div>
+          <div class="text-slate-500 dark:text-slate-400 italic">${ex.vi}</div>
+        </div>
+      `).join('');
+
+      document.getElementById('flashcardProgressText').textContent = `Thẻ: ${currentFcIndex + 1} / ${HAN1_DATA.length}`;
+      const progressPercent = ((currentFcIndex + 1) / HAN1_DATA.length) * 100;
+      document.getElementById('flashcardProgressBar').style.width = `${progressPercent}%`;
+      document.getElementById('masteredCountText').innerHTML = `<i class="fa-solid fa-circle-check mr-1"></i>Đã thuộc: ${masteredSet.size}`;
+    }
+
+    function flipFlashcard() {
+      isFcCardFlipped = !isFcCardFlipped;
+      const inner = document.getElementById('flashcardInner');
+      if (isFcCardFlipped) {
+        inner.classList.add('rotate-y-180');
+      } else {
+        inner.classList.remove('rotate-y-180');
+      }
+    }
+
+    function nextFlashcard() {
+      currentFcIndex = (currentFcIndex + 1) % HAN1_DATA.length;
+      updateFlashcardUI();
+    }
+
+    function prevFlashcard() {
+      currentFcIndex = (currentFcIndex - 1 + HAN1_DATA.length) % HAN1_DATA.length;
+      updateFlashcardUI();
+    }
+
+    function markMastered() {
+      masteredSet.add(currentFcWord.id);
+      nextFlashcard();
+    }
+
+    function markNeedReview() {
+      masteredSet.delete(currentFcWord.id);
+      nextFlashcard();
+    }
+
+    let quizQuestion = null;
+    let quizScore = 0;
+    let quizTotalDone = 0;
+    let quizAnswered = false;
+
+    function generateQuizQuestion() {
+      quizAnswered = false;
+      document.getElementById('quizFeedback').className = 'hidden';
+      document.getElementById('quizFeedback').textContent = '';
+
+      const randomIndex = Math.floor(Math.random() * HAN1_DATA.length);
+      quizQuestion = HAN1_DATA[randomIndex];
+
+      document.getElementById('quizHanzi').textContent = quizQuestion.hanzi;
+      document.getElementById('quizPinyin').textContent = quizQuestion.pinyin;
+
+      let options = [quizQuestion];
+      while (options.length < 4) {
+        const rand = HAN1_DATA[Math.floor(Math.random() * HAN1_DATA.length)];
+        if (!options.find(o => o.id === rand.id)) {
+          options.push(rand);
+        }
+      }
+      options.sort(() => Math.random() - 0.5);
+
+      const optsContainer = document.getElementById('quizOptionsContainer');
+      optsContainer.innerHTML = options.map((opt, i) => `
+        <button onclick="handleQuizAnswer(${opt.id}, this)" class="quiz-btn text-left p-4 rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 hover:border-rose-500 font-medium transition text-sm">
+          <span class="font-bold mr-2 text-slate-400">${String.fromCharCode(65 + i)}.</span>
+          <span>${opt.meaning}</span>
+        </button>
+      `).join('');
+    }
+
+    function speakCurrentQuizWord() {
+      if (quizQuestion) speakChinese(quizQuestion.hanzi);
+    }
+
+    function handleQuizAnswer(selectedId, btnElement) {
+      if (quizAnswered) return;
+      quizAnswered = true;
+      quizTotalDone++;
+
+      const isCorrect = (selectedId === quizQuestion.id);
+      const feedback = document.getElementById('quizFeedback');
+
+      if (isCorrect) {
+        quizScore++;
+        btnElement.classList.remove('bg-white', 'dark:bg-slate-800');
+        btnElement.classList.add('bg-emerald-500', 'text-white', 'border-emerald-600');
+        feedback.className = 'p-4 rounded-2xl mb-4 text-sm font-medium bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800 block';
+        feedback.innerHTML = `🎉 <strong>Chính xác!</strong> ${quizQuestion.hanzi} (${quizQuestion.pinyin}) nghĩa là: <em>${quizQuestion.meaning}</em>`;
+      } else {
+        btnElement.classList.remove('bg-white', 'dark:bg-slate-800');
+        btnElement.classList.add('bg-rose-500', 'text-white', 'border-rose-600');
+        feedback.className = 'p-4 rounded-2xl mb-4 text-sm font-medium bg-rose-50 dark:bg-rose-950/40 text-rose-700 dark:text-rose-300 border border-rose-200 dark:border-rose-800 block';
+        feedback.innerHTML = `❌ <strong>Chưa chính xác!</strong> Đáp án đúng là: <strong>${quizQuestion.meaning}</strong>`;
+      }
+
+      document.getElementById('quizScore').textContent = quizScore;
+      document.getElementById('quizTotalDone').textContent = quizTotalDone;
+    }
+
+    function nextQuizQuestion() {
+      generateQuizQuestion();
+    }
+
+    function renderRadicals() {
+      const container = document.getElementById('radicalsGrid');
+      container.innerHTML = RADICALS_DATA.map(rad => `
+        <div class="bg-white dark:bg-slate-800 p-5 rounded-3xl border border-slate-200 dark:border-slate-700 shadow-sm flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-700 mb-3">
+              <div class="flex items-center gap-3">
+                <span class="font-hanzi text-4xl font-bold text-rose-600 dark:text-rose-400 bg-rose-50 dark:bg-slate-700 px-3.5 py-1.5 rounded-2xl">
+                  ${rad.char}
+                </span>
+                <div>
+                  <h4 class="font-bold text-base">${rad.name}</h4>
+                  <span class="text-xs text-amber-500 font-semibold">${rad.pinyin} • ${rad.strokes} nét</span>
+                </div>
+              </div>
+            </div>
+            <p class="text-xs text-slate-600 dark:text-slate-300 mb-4">${rad.meaning}</p>
+          </div>
+
+          <div>
+            <span class="text-[11px] font-semibold text-slate-400 uppercase tracking-wider block mb-1.5">Chữ thường gặp trong bài:</span>
+            <div class="flex flex-wrap gap-1.5">
+              ${rad.words.map(w => `
+                <span onclick="speakChinese('${w.zh}')" title="Nhấn nghe phát âm" 
+                      class="cursor-pointer text-xs px-2.5 py-1 rounded-xl bg-slate-100 dark:bg-slate-700 hover:bg-rose-100 text-slate-800 dark:text-slate-200 font-medium">
+                  <span class="font-hanzi font-bold text-rose-600 dark:text-rose-400">${w.zh}</span>: ${w.py}
+                </span>
+              `).join('')}
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    let canvas = document.getElementById('writingCanvas');
+    let ctx = canvas.getContext('2d');
+    let isDrawing = false;
+    let selectedCharToPractice = DEFAULT_PRACTICE_CHARS[0];
+    let showGuide = true;
+
+    function renderPracticeCharSelector() {
+      const container = document.getElementById('practiceCharSelector');
+      container.innerHTML = DEFAULT_PRACTICE_CHARS.map((item, idx) => `
+        <button onclick="selectPracticeChar(${idx})" class="p-2 text-center rounded-2xl border border-slate-200 dark:border-slate-700 hover:border-rose-500 bg-slate-50 dark:bg-slate-900 transition">
+          <span class="font-hanzi text-2xl font-bold block">${item.char}</span>
+          <span class="text-[10px] text-amber-500 font-semibold">${item.pinyin}</span>
+        </button>
+      `).join('');
+    }
+
+    function selectPracticeChar(index) {
+      selectedCharToPractice = DEFAULT_PRACTICE_CHARS[index];
+      loadCharToCanvas(selectedCharToPractice);
+    }
+
+    function loadCharToCanvas(charObj) {
+      document.getElementById('charPracticeBig').textContent = charObj.char;
+      document.getElementById('charPracticePinyin').textContent = charObj.pinyin;
+      document.getElementById('charPracticeMeaning').textContent = charObj.meaning;
+      document.getElementById('charPracticeSteps').textContent = `Thứ tự: ${charObj.steps}`;
+      document.getElementById('canvasGuideChar').textContent = charObj.char;
+      clearCanvas();
+    }
+
+    function applyCustomPracticeChar() {
+      const input = document.getElementById('customCharInput').value.trim();
+      if (!input) return;
+      const firstChar = input.charAt(0);
+      
+      const foundInDict = HAN1_DATA.find(w => w.hanzi.includes(firstChar));
+      const charObj = {
+        char: firstChar,
+        pinyin: foundInDict ? foundInDict.pinyin : "",
+        meaning: foundInDict ? foundInDict.meaning : "Chữ tự nhập",
+        steps: "Áp dụng 7 quy tắc bút thuận căn bản của Hán ngữ 1."
+      };
+      selectedCharToPractice = charObj;
+      loadCharToCanvas(charObj);
+    }
+
+    function jumpToPracticeWriting(hanziChar) {
+      switchTab('luyen-viet');
+      const firstChar = hanziChar.charAt(0);
+      const foundPreset = DEFAULT_PRACTICE_CHARS.find(c => c.char === firstChar);
+      if (foundPreset) {
+        loadCharToCanvas(foundPreset);
+      } else {
+        const foundInDict = HAN1_DATA.find(w => w.hanzi === hanziChar || w.hanzi.includes(firstChar));
+        loadCharToCanvas({
+          char: firstChar,
+          pinyin: foundInDict ? foundInDict.pinyin : "",
+          meaning: foundInDict ? foundInDict.meaning : "",
+          steps: "Áp dụng 7 quy tắc bút thuận căn bản."
+        });
+      }
+    }
+
+    function initCanvasSize() {
+      const rect = canvas.getBoundingClientRect();
+      canvas.width = rect.width;
+      canvas.height = rect.height;
+      clearCanvas();
+    }
+
+    function getCanvasPos(e) {
+      const rect = canvas.getBoundingClientRect();
+      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+      const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+      return {
+        x: clientX - rect.left,
+        y: clientY - rect.top
+      };
+    }
+
+    function startDrawing(e) {
+      isDrawing = true;
+      const pos = getCanvasPos(e);
+      ctx.beginPath();
+      ctx.moveTo(pos.x, pos.y);
+      e.preventDefault();
+    }
+
+    function draw(e) {
+      if (!isDrawing) return;
+      const pos = getCanvasPos(e);
+      const brushColor = document.getElementById('brushColor').value;
+      const brushSize = document.getElementById('brushSize').value;
+
+      ctx.strokeStyle = brushColor;
+      ctx.lineWidth = brushSize;
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
+      ctx.lineTo(pos.x, pos.y);
+      ctx.stroke();
+      e.preventDefault();
+    }
+
+    function stopDrawing() {
+      isDrawing = false;
+    }
+
+    function clearCanvas() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+
+    function toggleCanvasGuide() {
+      showGuide = !showGuide;
+      const guide = document.getElementById('canvasGuideChar');
+      const btn = document.getElementById('toggleGuideBtn');
+      if (showGuide) {
+        guide.style.display = 'flex';
+        btn.textContent = 'Ẩn chữ mẫu';
+      } else {
+        guide.style.display = 'none';
+        btn.textContent = 'Hiện chữ mẫu';
+      }
+    }
+
+    // Sự kiện chuột & cảm ứng di động
+    canvas.addEventListener('mousedown', startDrawing);
+    canvas.addEventListener('mousemove', draw);
+    window.addEventListener('mouseup', stopDrawing);
+
+    canvas.addEventListener('touchstart', startDrawing, { passive: false });
+    canvas.addEventListener('touchmove', draw, { passive: false });
+    window.addEventListener('touchend', stopDrawing);
+
+    const themeToggleBtn = document.getElementById('themeToggleBtn');
+    const themeIcon = document.getElementById('themeIcon');
+
+    function initTheme() {
+      if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.documentElement.classList.add('dark');
+        themeIcon.classList.replace('fa-moon', 'fa-sun');
+      }
+    }
+
+    themeToggleBtn.addEventListener('click', () => {
+      document.documentElement.classList.toggle('dark');
+      if (document.documentElement.classList.contains('dark')) {
+        themeIcon.classList.replace('fa-moon', 'fa-sun');
+      } else {
+        themeIcon.classList.replace('fa-sun', 'fa-moon');
+      }
+    });
+
+    window.addEventListener('DOMContentLoaded', () => {
+      initTheme();
+      renderVocabList(HAN1_DATA);
+      updateFlashcardUI();
+      generateQuizQuestion();
+      renderRadicals();
+      renderPracticeCharSelector();
+      loadCharToCanvas(DEFAULT_PRACTICE_CHARS[0]);
+    });
+  </script>
+</body>
+</html>
